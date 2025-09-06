@@ -8,6 +8,7 @@ namespace Player
         [SerializeField] private Animator _animator;
         [SerializeField] private Joystick _joystick;
         [SerializeField] private bool _useJoystick;
+        private bool _isInteracting;
         private Vector3 _movement;
         public Vector3 Movement => _movement;
 
@@ -21,6 +22,7 @@ namespace Player
                 _useJoystick = false;
             
             Move();
+            Interact();
         }
         
         private void Move()
@@ -33,6 +35,20 @@ namespace Player
             _animator.SetFloat("Horizontal", _movement.x);
             _animator.SetFloat("Vertical", _movement.y);
             _animator.SetFloat("Speed", _movement.sqrMagnitude);
+            _animator.SetBool("IsInteracting", _isInteracting);
+        }
+
+        private void Interact()
+        {
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                _isInteracting = true;
+            }
+
+            if (Input.GetKeyUp(KeyCode.E))
+            {
+                _isInteracting = false;
+            }
         }
     }
 }
