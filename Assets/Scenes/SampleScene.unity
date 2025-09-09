@@ -6078,10 +6078,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97ccfcf3af5f14071bbbe6de378f856b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 3
+  _moveSpeed: 20
   _animator: {fileID: 2141505538}
   _joystick: {fileID: 1694591301}
-  _useJoystick: 0
 --- !u!1 &845163475
 GameObject:
   m_ObjectHideFlags: 0
