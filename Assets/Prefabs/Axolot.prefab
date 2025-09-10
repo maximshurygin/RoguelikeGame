@@ -10,7 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 9250249653845957}
   - component: {fileID: 7919238676449523586}
-  m_Layer: 0
+  - component: {fileID: 5325162103566370170}
+  - component: {fileID: 569094830460251488}
+  - component: {fileID: 5923620534798478228}
+  m_Layer: 7
   m_Name: Axolot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -48,6 +51,78 @@ MonoBehaviour:
   _moveSpeed: 2
   _freezeTimer: 0
   _animator: {fileID: 4131875795186203702}
+--- !u!61 &5325162103566370170
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877815196246103951}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.58, y: 0.58}
+  m_EdgeRadius: 0
+--- !u!114 &569094830460251488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877815196246103951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3268c59ab25f4646a07aa27760502880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 15
+  currentHealth: 0
+--- !u!114 &5923620534798478228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877815196246103951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c3a8b8a8944ff287c5ec05d95a4f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
 --- !u!1 &5728722844729380977
 GameObject:
   m_ObjectHideFlags: 0
@@ -59,7 +134,7 @@ GameObject:
   - component: {fileID: 1995952042022997469}
   - component: {fileID: 7974918892075736774}
   - component: {fileID: 4131875795186203702}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: AxolotSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}

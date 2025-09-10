@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3673769281319652985}
   - component: {fileID: 5396739963067082998}
   - component: {fileID: 6277684135131640809}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: BeeSprite
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,10 @@ GameObject:
   m_Component:
   - component: {fileID: 1127844684792302008}
   - component: {fileID: 8214522108139359207}
-  m_Layer: 0
+  - component: {fileID: 8486020410371177062}
+  - component: {fileID: 6563780955554405025}
+  - component: {fileID: 2429858777648455412}
+  m_Layer: 7
   m_Name: Bee
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -154,3 +157,65 @@ MonoBehaviour:
   _moveSpeed: 2
   _freezeTimer: 0
   _animator: {fileID: 6277684135131640809}
+--- !u!114 &8486020410371177062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2216120971901821324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3268c59ab25f4646a07aa27760502880, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 15
+  currentHealth: 0
+--- !u!114 &6563780955554405025
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2216120971901821324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 59c3a8b8a8944ff287c5ec05d95a4f64, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 5
+--- !u!70 &2429858777648455412
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2216120971901821324}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: -0.13}
+  m_Size: {x: 0.5, y: 0.43}
+  m_Direction: 0
