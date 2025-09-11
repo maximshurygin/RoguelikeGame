@@ -7,9 +7,9 @@ namespace Enemy
 {
     public class EnemyMove : MonoBehaviour
     {
-        [SerializeField] private float _moveSpeed;
-        [SerializeField] private float _freezeTimer;
-        [SerializeField] private Animator _animator;
+        [SerializeField] private float moveSpeed;
+        [SerializeField] private float freezeTimer;
+        [SerializeField] private Animator animator;
         private Vector3 _direction;
         private PlayerMovement _playerMovement;
         private WaitForSeconds _checkTime = new WaitForSeconds(3f);
@@ -26,9 +26,9 @@ namespace Enemy
         private void Move()
         {
             _direction = (_playerMovement.transform.position - transform.position).normalized;
-            transform.position += _direction * (_moveSpeed * Time.deltaTime);
-            _animator.SetFloat("Horizontal", _direction.x);
-            _animator.SetFloat("Vertical", _direction.y);
+            transform.position += _direction * (moveSpeed * Time.deltaTime);
+            animator.SetFloat("Horizontal", _direction.x);
+            animator.SetFloat("Vertical", _direction.y);
         }
 
         private IEnumerator CheckDistanceToHide()

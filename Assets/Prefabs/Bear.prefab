@@ -154,9 +154,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d033f83802344f89e5444fd3771b071, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _moveSpeed: 2
-  _freezeTimer: 0
-  _animator: {fileID: 7996035959757636390}
+  moveSpeed: 2
+  freezeTimer: 0
+  animator: {fileID: 7996035959757636390}
 --- !u!114 &8409494389152217767
 MonoBehaviour:
   m_ObjectHideFlags: 0
