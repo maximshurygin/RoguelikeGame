@@ -7,6 +7,7 @@ namespace GameCore.Health
     {
         [SerializeField] private float maxHealth;
         [SerializeField] private float currentHealth;
+        public Action OnHealthChanged;
         
         public float MaxHealth => maxHealth;
         public float CurrentHealth => currentHealth;

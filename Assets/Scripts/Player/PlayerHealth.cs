@@ -7,19 +7,12 @@ namespace Player
 {
     public class PlayerHealth: ObjectHealth
     {
-        public Action OnHealthChanged;
         private WaitForSeconds _regenerationInterval = new WaitForSeconds(5f);
         private float _regenerationValue = 1f;
         
         private void Start()
         {
             StartCoroutine(RegenerateHealth());
-        }
-
-        public void Heal(float amount)
-        {
-            TakeHeal(amount);
-            OnHealthChanged?.Invoke();
         }
         
         public override void TakeDamage(float value)
