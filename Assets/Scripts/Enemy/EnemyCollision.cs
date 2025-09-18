@@ -1,18 +1,27 @@
+using GameCore.GameObjectPool;
 using Player;
 using UnityEngine;
+using Zenject;
 
 namespace Enemy
 {
     public class EnemyCollision : MonoBehaviour
     {
         [SerializeField] private float damage;
+        private GameObjectPool _enemyPool;
+        
+        [Inject]
+        public void Construct(GameObjectPool enemyPool)
+        {
+            _enemyPool = enemyPool;
+        }
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.TryGetComponent(out PlayerHealth player))
+            if (other.gameObject.TryGetComponent(out PlayerHealth player) && gameObject.activeInHierarchy)
             {
                 player.TakeDamage(damage);
-                gameObject.SetActive(false);
+                _enemyPool.Release(gameObject);
             }
         }
     }

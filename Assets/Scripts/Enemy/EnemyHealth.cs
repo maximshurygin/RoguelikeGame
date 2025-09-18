@@ -1,18 +1,28 @@
 using System.Collections;
+using GameCore.GameObjectPool;
 using GameCore.Health;
 using UnityEngine;
+using Zenject;
 
 namespace Enemy
 {
     public class EnemyHealth: ObjectHealth
     {
+        private GameObjectPool _enemyPool;
         private WaitForSeconds _tick = new WaitForSeconds(1f);
+
+        [Inject]
+        public void Construct(GameObjectPool enemyPool)
+        {
+            _enemyPool = enemyPool;
+        }
+        
         public override void TakeDamage(float damage)
         {   
             base.TakeDamage(damage);
-            if (CurrentHealth <= 0)
+            if (CurrentHealth <= 0 && gameObject.activeInHierarchy)
             {
-                gameObject.SetActive(false);
+                _enemyPool.Release(gameObject);
             }
         }
         public void Burn(float damage) => StartCoroutine(StartBurn(damage));

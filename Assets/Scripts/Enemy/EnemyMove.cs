@@ -1,4 +1,5 @@
 using System.Collections;
+using GameCore.GameObjectPool;
 using Player;
 using UnityEngine;
 using Zenject;
@@ -13,8 +14,15 @@ namespace Enemy
         private Vector3 _direction;
         private PlayerMovement _playerMovement;
         private WaitForSeconds _checkTime = new WaitForSeconds(3f);
-        
-        [Inject] private void Construct(PlayerMovement playerMovement) => _playerMovement = playerMovement;
+        private GameObjectPool _enemyPool;
+
+        [Inject]
+        private void Construct(PlayerMovement playerMovement, GameObjectPool enemyPool)
+        {
+            _playerMovement = playerMovement;
+            _enemyPool = enemyPool;
+        }
+
 
         private void OnEnable()
         {
@@ -36,9 +44,10 @@ namespace Enemy
             while (enabled)
             {
                 float distance = Vector3.Distance(transform.position, _playerMovement.transform.position);
-                if (distance > 20f)
+                if (distance > 20f && gameObject.activeInHierarchy)
                 {
-                    gameObject.SetActive(false);
+                    _enemyPool.Release(gameObject);
+                    yield break;
                 }
                 yield return _checkTime;;
             }
