@@ -31,13 +31,19 @@ namespace GameCore.GameObjectPool
             }, currentGameObject =>
             {
                 Destroy(currentGameObject);
-            });
+            },
+                false,
+                5,
+                10);
         }
         
         
         public void Release(GameObject currentGameObject)
         {
-            _gameObjectPool.Release(currentGameObject);
+            if (currentGameObject.activeInHierarchy)
+            {
+                _gameObjectPool.Release(currentGameObject);
+            }
         }
         
         public GameObject Get()

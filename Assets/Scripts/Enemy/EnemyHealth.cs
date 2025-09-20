@@ -20,7 +20,7 @@ namespace Enemy
         public override void TakeDamage(float damage)
         {   
             base.TakeDamage(damage);
-            if (CurrentHealth <= 0 && gameObject.activeInHierarchy)
+            if (CurrentHealth <= 0)
             {
                 _enemyPool.Release(gameObject);
             }
@@ -29,7 +29,7 @@ namespace Enemy
 
         private IEnumerator StartBurn(float damage)
         {
-            if (!enabled)
+            if (!gameObject.activeSelf)
             {
                 yield break;
             }

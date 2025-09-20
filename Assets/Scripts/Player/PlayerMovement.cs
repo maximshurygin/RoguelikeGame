@@ -17,8 +17,13 @@ namespace Player
         private Device _device;
         private bool _isInteracting;
         private Vector3 _movement;
+        private Rigidbody2D _rigidbody;
 
-        private void Update()
+        private void Start()
+        {
+            _rigidbody = GetComponent<Rigidbody2D>();
+        }
+        private void FixedUpdate()
         {
             // если игрок двигает джойстик, то используем джойстик
             if (joystick && (joystick.Horizontal != 0f || joystick.Vertical > 0f))
@@ -36,8 +41,10 @@ namespace Player
             float horizontal = _device == Device.Joystick&& joystick ? joystick.Horizontal : Input.GetAxisRaw("Horizontal");
             float vertical = _device == Device.Joystick&& joystick ? joystick.Vertical : Input.GetAxisRaw("Vertical");
             
-            _movement = new Vector3(horizontal, vertical, 0);
-            transform.position += _movement.normalized * (moveSpeed * Time.deltaTime);
+            // _movement = new Vector3(horizontal, vertical, 0);
+            // transform.position += _movement.normalized * (moveSpeed * Time.deltaTime);
+            _movement = new Vector3(horizontal, vertical, 0).normalized;
+            _rigidbody.velocity = _movement * moveSpeed;
             animator.SetFloat("Horizontal", _movement.x);
             animator.SetFloat("Vertical", _movement.y);
             animator.SetFloat("Speed", _movement.sqrMagnitude);

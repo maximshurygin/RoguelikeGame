@@ -44,7 +44,7 @@ namespace Enemy
             while (enabled)
             {
                 float distance = Vector3.Distance(transform.position, _playerMovement.transform.position);
-                if (distance > 20f && gameObject.activeInHierarchy)
+                if (distance > 20f)
                 {
                     _enemyPool.Release(gameObject);
                     yield break;

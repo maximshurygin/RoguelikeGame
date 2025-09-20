@@ -18,7 +18,7 @@ namespace Enemy
 
         private void OnTriggerEnter2D(Collider2D other)
         {
-            if (other.gameObject.TryGetComponent(out PlayerHealth player) && gameObject.activeInHierarchy)
+            if (other.gameObject.TryGetComponent(out PlayerHealth player))
             {
                 player.TakeDamage(damage);
                 _enemyPool.Release(gameObject);
