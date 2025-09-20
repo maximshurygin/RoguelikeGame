@@ -11,13 +11,7 @@ namespace GameCore.UI
     {
         [SerializeField] private TMP_Text _levelText;
         [SerializeField] private BaseWeapon _currentWeapon;
-
-        // [Inject]
-        // public void Construct(BaseWeapon currentWeapon)
-        // {
-        //     _currentWeapon = currentWeapon;
-        // }
-
+        
         private void Start()
         {
             UpdateLevelText();

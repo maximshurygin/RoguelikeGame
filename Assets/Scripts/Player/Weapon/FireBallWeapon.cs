@@ -22,17 +22,12 @@ namespace Player.Weapon
         private WaitForSeconds _interval, _duration, _timeBetweenAttack;
         private float _rotationSpeed, _range;
         private Coroutine _attackCoroutine;
-
-        private void Start()
+ 
+        protected override void Start()
         {
-            SetStats(0);
+            base.Start();
             SetupWeapon();
             Activate();
-            // LevelUp();
-            // LevelUp();
-            // LevelUp();
-            // LevelUp();
-            // LevelUp();
         }
         private void Update()
         {

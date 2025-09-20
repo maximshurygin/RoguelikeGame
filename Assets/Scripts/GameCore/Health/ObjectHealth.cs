@@ -13,8 +13,17 @@ namespace GameCore.Health
         
         public float MaxHealth => maxHealth;
         public float CurrentHealth => currentHealth;
-        
-        protected virtual void OnEnable() => currentHealth = maxHealth;
+
+        protected virtual void OnEnable()
+        {
+            currentHealth = maxHealth;
+            damageAnimator.enabled = true;
+        }
+
+        protected virtual void OnDisable()
+        {
+            damageAnimator.enabled = false;
+        }
 
         public virtual void TakeDamage(float damage)
         {

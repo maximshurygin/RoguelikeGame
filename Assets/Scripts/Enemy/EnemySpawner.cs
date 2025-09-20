@@ -12,7 +12,6 @@ namespace Enemy
         [SerializeField] private float timeToSpawn;
         [SerializeField] private Transform minPos, maxPos;
         [SerializeField] private Transform enemyContainer;
-        // [SerializeField] private GameObjectPool _enemyPool;
         private GameObjectPool _enemyPool;
         private PlayerMovement _playerMovement;
         private WaitForSeconds _interval;

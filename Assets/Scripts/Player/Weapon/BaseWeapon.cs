@@ -8,8 +8,8 @@ namespace Player.Weapon
     public class BaseWeapon : MonoBehaviour
     {
         [SerializeField] private List<WeaponStats> _weaponStats = new();
-        [SerializeField] private float _damage;
         
+        private float _damage;
         private DiContainer _diContainer;
         private int _currentLevel = 1;
         private int _maxLevel = 8;
@@ -27,7 +27,7 @@ namespace Player.Weapon
             _diContainer = diContainer;
         }
 
-        private void Start()
+        protected virtual void Start()
         {
             SetStats(0);
         }
