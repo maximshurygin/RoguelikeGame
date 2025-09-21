@@ -9,6 +9,7 @@ namespace GameCore.Health
         [SerializeField] private float currentHealth;
         [SerializeField] private Animator damageAnimator;
         [SerializeField] private AudioSource damageAudioSource;
+        [SerializeField] private DamageFlash damageFlash;
         public Action OnHealthChanged;
         
         public float MaxHealth => maxHealth;
@@ -17,13 +18,8 @@ namespace GameCore.Health
         protected virtual void OnEnable()
         {
             currentHealth = maxHealth;
-            damageAnimator.enabled = true;
         }
-
-        protected virtual void OnDisable()
-        {
-            damageAnimator.enabled = false;
-        }
+        
 
         public virtual void TakeDamage(float damage)
         {
@@ -31,10 +27,15 @@ namespace GameCore.Health
                 if (damage <= 0) throw new ArgumentOutOfRangeException(nameof(damage));
             currentHealth -= damage;
             
-            damageAnimator?.SetTrigger("Hit");
+            damageFlash?.Flash();
+            damageAnimator?.Play("Blood", 0, 0f);
+
             if (damageAudioSource && damageAudioSource.clip)
             {
-                damageAudioSource.PlayOneShot(damageAudioSource.clip);
+                if (currentHealth <= 0f)
+                    AudioSource.PlayClipAtPoint(damageAudioSource.clip, transform.position);
+                else
+                    damageAudioSource.PlayOneShot(damageAudioSource.clip);
             }
         }
 

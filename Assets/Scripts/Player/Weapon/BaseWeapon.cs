@@ -8,18 +8,19 @@ namespace Player.Weapon
     public class BaseWeapon : MonoBehaviour
     {
         [SerializeField] private List<WeaponStats> _weaponStats = new();
+        [SerializeField] private string _weaponName;
         
         private float _damage;
         private DiContainer _diContainer;
         private int _currentLevel = 1;
         private int _maxLevel = 8;
-        private string _weaponName = "Fireball";
         
         public float Damage => _damage;
         public List<WeaponStats> WeaponStats => _weaponStats;
         public int CurrentLevel => _currentLevel;
         public int MaxLevel => _maxLevel;
         public string WeaponName => _weaponName;
+
         
         [Inject]
         private void Construct(DiContainer diContainer)

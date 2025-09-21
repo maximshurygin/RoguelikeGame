@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 569094830460251488}
   - component: {fileID: 5923620534798478228}
   - component: {fileID: -3730161669133530954}
+  - component: {fileID: 1963466348219178767}
   m_Layer: 7
   m_Name: Axolot
   m_TagString: Untagged
@@ -114,6 +115,7 @@ MonoBehaviour:
   currentHealth: 0
   damageAnimator: {fileID: 6709969252217795868}
   damageAudioSource: {fileID: -3730161669133530954}
+  damageFlash: {fileID: 5720555080775072849}
 --- !u!114 &5923620534798478228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -137,9 +139,9 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 760d64e62f6564c2eac5022c060ed190, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 2b28b5bfe58aa4903a5513f2251b8801, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.7
+  m_Volume: 0.35
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -223,6 +225,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!95 &1963466348219178767
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877815196246103951}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: dddaab140a7994f1690093925cc64746, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &5728722844729380977
 GameObject:
   m_ObjectHideFlags: 0
@@ -234,6 +257,7 @@ GameObject:
   - component: {fileID: 1995952042022997469}
   - component: {fileID: 7974918892075736774}
   - component: {fileID: 4131875795186203702}
+  - component: {fileID: 5720555080775072849}
   m_Layer: 7
   m_Name: AxolotSprite
   m_TagString: Untagged
@@ -329,6 +353,20 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &5720555080775072849
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5728722844729380977}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42a890c0dd604fb7bd9d7ed299280ff0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _flashMaterial: {fileID: 2100000, guid: 27982d728a10b43b68b88625b0a6dbc3, type: 2}
+  _flashDuration: 0.2
 --- !u!1 &6011212911765951458
 GameObject:
   m_ObjectHideFlags: 0

@@ -15,6 +15,9 @@ namespace Enemy
         private PlayerMovement _playerMovement;
         private WaitForSeconds _checkTime = new WaitForSeconds(3f);
         private GameObjectPool _enemyPool;
+        private Coroutine _slowdownCoroutine;
+        private float moveSpeedTemp;
+        
 
         [Inject]
         private void Construct(PlayerMovement playerMovement, GameObjectPool enemyPool)
@@ -23,10 +26,18 @@ namespace Enemy
             _enemyPool = enemyPool;
         }
 
+        private void Start()
+        {
+            moveSpeedTemp = moveSpeed;
+        }
 
         private void OnEnable()
         {
             StartCoroutine(CheckDistanceToHide());
+            if (moveSpeedTemp != 0)
+            {
+                moveSpeed = moveSpeedTemp;
+            }
         }
         
         
@@ -51,6 +62,24 @@ namespace Enemy
                 }
                 yield return _checkTime;;
             }
+        }
+
+        public void SlowDown(float slowdownRate, WaitForSeconds duration)
+        {
+            if (!gameObject.activeInHierarchy) return;
+            StartCoroutine(ApplySlowdown(slowdownRate, duration));
+        }
+        
+        private IEnumerator ApplySlowdown(float slowdownRate, WaitForSeconds duration)
+        {
+            if (_slowdownCoroutine != null)
+            {
+                StopCoroutine(_slowdownCoroutine);
+            }
+            moveSpeed /= slowdownRate;
+            yield return duration;
+            moveSpeed = moveSpeedTemp;
+            _slowdownCoroutine = null;
         }
     }
 }

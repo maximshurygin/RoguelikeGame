@@ -12,8 +12,11 @@ namespace Player.Weapon
         [SerializeField] private CircleCollider2D _collider;
         private List<EnemyHealth> _enemyInZone = new List<EnemyHealth>();
         private WaitForSeconds _timeBetweenAttack;
+        private WaitForSeconds _slowdownDuration;
         private Coroutine _auraCoroutine;
         private float _range;
+        private float _slowdownRate;
+
 
         protected override void Start()
         {
@@ -56,6 +59,8 @@ namespace Player.Weapon
             base.SetStats(value);
             _timeBetweenAttack = new WaitForSeconds(WeaponStats[CurrentLevel - 1].TimeBetweenAttack);
             _range = WeaponStats[CurrentLevel - 1].Range;
+            _slowdownDuration = new WaitForSeconds(WeaponStats[CurrentLevel - 1].SlowdownDuration);
+            _slowdownRate = WeaponStats[CurrentLevel - 1].SlowdownRate;
             _targetContainer.transform.localScale = Vector3.one * _range;
             _collider.radius = _range / 3f;
         }
@@ -64,11 +69,22 @@ namespace Player.Weapon
         {
             while (true)
             {
-                for (int i = 0; i < _enemyInZone.Count; i++)
+                if (CurrentLevel < 5)
                 {
-                    _enemyInZone[i].TakeDamage(Damage);
+                    for (int i = 0; i < _enemyInZone.Count; i++)
+                    {
+                        _enemyInZone[i].TakeDamage(Damage);
+                    }
                 }
-
+                else
+                {
+                    for (int i = 0; i < _enemyInZone.Count; i++)
+                    {
+                        _enemyInZone[i].TryGetComponent(out EnemyMove enemyMove);
+                        _enemyInZone[i].TakeDamage(Damage);
+                        enemyMove.SlowDown(_slowdownRate, _slowdownDuration);
+                    } 
+                }
                 yield return _timeBetweenAttack;
             }
         }
