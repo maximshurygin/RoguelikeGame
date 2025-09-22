@@ -12,7 +12,7 @@ namespace GameCore.Health
         private Material _originalMaterial;
         private Coroutine _flashCoroutine;
 
-        void Start()
+        void Awake()
         {
             _spriteRenderer = GetComponent<SpriteRenderer>();
             _originalMaterial = _spriteRenderer.material;
@@ -30,7 +30,6 @@ namespace GameCore.Health
             {
                 StopCoroutine(_flashCoroutine);
             }
-
             _flashCoroutine = StartCoroutine(FlashCoroutine());
         }
 
