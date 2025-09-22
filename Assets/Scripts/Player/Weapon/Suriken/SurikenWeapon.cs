@@ -16,7 +16,6 @@ namespace Player.Weapon.Suriken
         private Vector3 _direction;
         public float Duration => _duration;
         public float Speed => _speed;
-        public Vector3 Direction => _direction;
 
         private void OnEnable() => Activate();
 
