@@ -18,6 +18,8 @@ namespace Player
         private bool _isInteracting;
         private Vector3 _movement;
         private Rigidbody2D _rigidbody;
+        
+        public Vector3 Movement => _movement;
 
         private void Start()
         {
