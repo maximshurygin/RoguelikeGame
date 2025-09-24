@@ -40,8 +40,8 @@ namespace Enemy
             for (int i = 0; i < 5; i++)
             {
                 TakeDamage(roundDamage);
+                yield return _tick;
             }
-            yield return _tick;
         }
     }
 }
