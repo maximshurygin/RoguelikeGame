@@ -6618,7 +6618,7 @@ MonoBehaviour:
     duration: 0
     slowdownDuration: 0
     slowdownRate: 0
-  _weaponName: 
+  _weaponName: Sword
   _weaponTransform: {fileID: 1599451454}
   _swordCollider: {fileID: 717429669}
   _animator: {fileID: 717429666}
@@ -117592,7 +117592,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelText: {fileID: 1648158932}
-  _currentWeapon: {fileID: 1016514136}
+  _currentWeapon: {fileID: 717429670}
 --- !u!1 &972025344
 GameObject:
   m_ObjectHideFlags: 0
