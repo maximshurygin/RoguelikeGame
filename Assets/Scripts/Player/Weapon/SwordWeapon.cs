@@ -23,7 +23,6 @@ namespace Player.Weapon
 
         private void Update()
         {
-            
             _direction = _camera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
             float targetAngle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
