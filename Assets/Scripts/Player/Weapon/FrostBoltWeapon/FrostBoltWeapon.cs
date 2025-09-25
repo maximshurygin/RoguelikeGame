@@ -13,7 +13,7 @@ namespace Player.Weapon.FrostBoltWeapon
         [SerializeField] private List<Transform> _shootPoints =  new List<Transform>();
         private WaitForSeconds _timeBetweenAttack;
         private Coroutine _frostBoltCoroutine;
-        private float _duration, _speed, _slowdown, _slowdownRate;
+        private float _duration, _speed, _slowdownRate;
         private WaitForSeconds _slowdownDuration;
         private Vector3 _direction;
 

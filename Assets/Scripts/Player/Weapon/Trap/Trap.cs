@@ -34,6 +34,10 @@ namespace Player.Weapon.Trap
                 if (enemy.gameObject.activeSelf)
                 {
                     enemy.Burn(Damage);
+                    if (_trapWeapon.CurrentLevel >= 5)
+                    {
+                        enemy.GetComponent<EnemyMove>()?.SlowDown(_trapWeapon.SlowdownRate, _trapWeapon.SlowdownDuration);
+                    }
                 }
                 gameObject.SetActive(false);
             }

@@ -11,10 +11,20 @@ namespace Player.Weapon.Trap
         [SerializeField] private Transform _container;
         private WaitForSeconds _timeBetweenAttack;
         private Coroutine _trapCoroutine;
+        private float _slowdownRate;
+        private WaitForSeconds _slowdownDuration;
+
+        public WaitForSeconds SlowdownDuration => _slowdownDuration;
+        public float SlowdownRate => _slowdownRate;
+
 
         private void OnEnable()
         {
             Activate();
+            LevelUp();
+            LevelUp();
+            LevelUp();
+            LevelUp();
         }
         
         public void Activate()
@@ -35,6 +45,8 @@ namespace Player.Weapon.Trap
         {
             base.SetStats(value);
             _timeBetweenAttack = new WaitForSeconds(WeaponStats[CurrentLevel - 1].TimeBetweenAttack);
+            _slowdownDuration = new WaitForSeconds(WeaponStats[CurrentLevel - 1].SlowdownDuration);
+            _slowdownRate = WeaponStats[CurrentLevel - 1].SlowdownRate;
         }
 
         private IEnumerator SpawnTrap()
