@@ -1,10 +1,9 @@
-using System;
 using UnityEngine;
 using Zenject;
 
 namespace Player.Weapon.Bow
 {
-    public class Arrow : Projectile
+    public class Arrow: Projectile
     {
         private BowWeapon _bowWeapon;
 
@@ -23,7 +22,7 @@ namespace Player.Weapon.Bow
         {
             base.OnEnable();
             Timer = new WaitForSeconds(_bowWeapon.Duration);
-            Damage = _bowWeapon.Damage;
+            Damage = _bowWeapon.ChargedDamage;
         }
 
         protected override void OnTriggerEnter2D(Collider2D other)

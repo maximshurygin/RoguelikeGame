@@ -20,6 +20,7 @@ namespace DI
 
 
 
+
         public override void InstallBindings()
         {
             Container.Bind<PlayerMovement>().FromInstance(playerMovement).AsSingle().NonLazy();
