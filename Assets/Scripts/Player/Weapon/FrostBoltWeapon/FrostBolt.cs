@@ -31,7 +31,14 @@ namespace Player.Weapon.FrostBoltWeapon
             if (other.TryGetComponent(out EnemyHealth enemy))
             {
                 enemy.TakeDamage(Damage);
-                enemy.GetComponent<EnemyMove>()?.SlowDown(_frostBoltWeapon.SlowdownRate, _frostBoltWeapon.SlowdownDuration);
+                float slowdownRate = _frostBoltWeapon.SlowdownRate;
+                WaitForSeconds slowdownDuration = _frostBoltWeapon.SlowdownDuration;
+                if (_frostBoltWeapon.CurrentLevel >= 5 && Random.Range(0f, 1f) < 0.5f)
+                {
+                    slowdownRate = float.MaxValue;
+                    slowdownDuration = new WaitForSeconds(2f);
+                }
+                enemy.GetComponent<EnemyMove>()?.SlowDown(slowdownRate, slowdownDuration);
             }
 
             if (_frostBoltWeapon.CurrentLevel <= 4)

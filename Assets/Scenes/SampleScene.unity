@@ -117256,7 +117256,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _levelText: {fileID: 1648158932}
-  _currentWeapon: {fileID: 2051902759}
+  _currentWeapon: {fileID: 1016514136}
 --- !u!1 &972025344
 GameObject:
   m_ObjectHideFlags: 0
@@ -117395,7 +117395,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1016514134
 Transform:
   m_ObjectHideFlags: 0
@@ -117463,21 +117463,21 @@ MonoBehaviour:
     damage: 15
     range: 7
     timeBetweenAttack: 0.5
-    duration: 3
+    duration: 2
     slowdownDuration: 0
     slowdownRate: 0
   - speed: 7
     damage: 17
     range: 7
     timeBetweenAttack: 0.4
-    duration: 3.2
+    duration: 2
     slowdownDuration: 0
     slowdownRate: 0
   - speed: 8
     damage: 20
     range: 8
     timeBetweenAttack: 0.3
-    duration: 3.5
+    duration: 2
     slowdownDuration: 0
     slowdownRate: 0
   _weaponName: Suriken
@@ -120732,7 +120732,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1679828003
 Transform:
   m_ObjectHideFlags: 0
