@@ -30,11 +30,10 @@ namespace Player.Weapon.Bow
         public float Duration => _duration;
         public float Speed => _speed;
         public float ChargedDamage => Damage * _chargeMultiplier;
-
+        
         protected override void Start()
         {
-            base.Start();
-            _timeBetweenAttack = WeaponStats[CurrentLevel - 1].TimeBetweenAttack;
+            SetStats(0);
             _chargeMultiplier = _minMultiplier;
         }
 
@@ -90,6 +89,7 @@ namespace Player.Weapon.Bow
         protected override void SetStats(int value)
         {
             base.SetStats(value);
+            _timeBetweenAttack = WeaponStats[CurrentLevel - 1].TimeBetweenAttack;
             _speed = WeaponStats[CurrentLevel - 1].Speed;
             _duration = WeaponStats[CurrentLevel - 1].Duration;
         }
