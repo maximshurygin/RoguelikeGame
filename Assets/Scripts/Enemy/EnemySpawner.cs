@@ -25,11 +25,6 @@ namespace Enemy
             _spawnPoint = getRandomSpawnPoint;
             _playerMovement = playerMovement;
         }
-
-        private void Awake()
-        {
-            Activate();
-        }
         
         private void Start()
         {

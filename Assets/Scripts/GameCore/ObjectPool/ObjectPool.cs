@@ -6,7 +6,7 @@ namespace GameCore.GameObjectPool
 {
     public class ObjectPool : MonoBehaviour, IFactory<GameObject>
     {
-        [SerializeField] private GameObject[] _prefabs;
+        [SerializeField] private GameObject _prefab;
         private List<GameObject> _objectPool = new List<GameObject>();
         private DiContainer _diContainer;
 
@@ -32,7 +32,7 @@ namespace GameCore.GameObjectPool
         
         public GameObject Create()
         {
-            GameObject newObject = _diContainer.InstantiatePrefab(_prefabs[Random.Range(0, _prefabs.Length)]);
+            GameObject newObject = _diContainer.InstantiatePrefab(_prefab);
             newObject.SetActive(false);
             _objectPool.Add(newObject);
             return newObject;
