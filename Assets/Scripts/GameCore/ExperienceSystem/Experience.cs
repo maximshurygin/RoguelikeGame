@@ -7,7 +7,6 @@ namespace GameCore.ExperienceSystem
 {
     public class Experience : MonoBehaviour
     {
-        // [SerializeField] private float _value;
         private float _expValue;
 
         public float ExpValue
