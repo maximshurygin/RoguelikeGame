@@ -19,7 +19,6 @@ namespace GameCore.Health
         {
             currentHealth = maxHealth;
         }
-        
 
         public virtual void TakeDamage(float damage)
         {

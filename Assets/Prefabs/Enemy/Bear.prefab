@@ -191,6 +191,7 @@ MonoBehaviour:
   damageAnimator: {fileID: 5045247928621053574}
   damageAudioSource: {fileID: 2392473613395555923}
   damageFlash: {fileID: 4399669511110071088}
+  _enemyType: 2
 --- !u!114 &6737496351835990326
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -111,11 +111,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3268c59ab25f4646a07aa27760502880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 15
+  maxHealth: 10
   currentHealth: 0
   damageAnimator: {fileID: 6709969252217795868}
   damageAudioSource: {fileID: -3730161669133530954}
   damageFlash: {fileID: 5720555080775072849}
+  _enemyType: 0
 --- !u!114 &5923620534798478228
 MonoBehaviour:
   m_ObjectHideFlags: 0

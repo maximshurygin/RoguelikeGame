@@ -65,11 +65,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3268c59ab25f4646a07aa27760502880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 20
+  maxHealth: 15
   currentHealth: 0
   damageAnimator: {fileID: 2586974604847236024}
   damageAudioSource: {fileID: 4712944165708243682}
   damageFlash: {fileID: 6379512721831625469}
+  _enemyType: 1
 --- !u!114 &5156614277611326641
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -186,11 +186,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3268c59ab25f4646a07aa27760502880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 15
+  maxHealth: 20
   currentHealth: 0
   damageAnimator: {fileID: 5128269134886182392}
   damageAudioSource: {fileID: 3152128247024456829}
   damageFlash: {fileID: 9126732748901632394}
+  _enemyType: 2
 --- !u!61 &654764708841695768
 BoxCollider2D:
   m_ObjectHideFlags: 0
