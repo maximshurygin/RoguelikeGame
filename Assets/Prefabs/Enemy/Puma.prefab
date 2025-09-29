@@ -135,6 +135,8 @@ GameObject:
   - component: {fileID: 654764708841695768}
   - component: {fileID: 6722275712771917822}
   - component: {fileID: 3152128247024456829}
+  - component: {fileID: 6988857044547225891}
+  - component: {fileID: 6086094606287004872}
   m_Layer: 7
   m_Name: Puma
   m_TagString: Untagged
@@ -192,7 +194,7 @@ MonoBehaviour:
   damageAudioSource: {fileID: 3152128247024456829}
   damageFlash: {fileID: 9126732748901632394}
   _enemyType: 2
-  _deathParticleSystem: {fileID: 7394869532102232870, guid: 957bd4df2b3f14a6cb3f6af4bc50c3e5, type: 3}
+  _deathParticleSpawner: {fileID: 6988857044547225891}
 --- !u!61 &654764708841695768
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -347,6 +349,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6988857044547225891
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7257134435538408608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bbd03d2a460404c9d4d4fe453dbb1bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectPool: {fileID: 6086094606287004872}
+--- !u!114 &6086094606287004872
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7257134435538408608}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0db3c1a6c4422e985be19478420283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 7909976398742610268, guid: 957bd4df2b3f14a6cb3f6af4bc50c3e5, type: 3}
 --- !u!1 &7819611390261274071
 GameObject:
   m_ObjectHideFlags: 0

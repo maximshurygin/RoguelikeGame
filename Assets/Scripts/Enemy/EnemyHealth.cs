@@ -1,4 +1,5 @@
 using System.Collections;
+using GameCore;
 using GameCore.ExperienceSystem;
 using GameCore.Health;
 using GameCore.UI;
@@ -18,7 +19,7 @@ namespace Enemy
     public class EnemyHealth: ObjectHealth
     {
         [SerializeField] private EnemyType _enemyType;
-        [SerializeField] private ParticleSystem _deathParticleSystem;
+        [SerializeField] private ParticleSpawner _deathParticleSpawner;
         private PlayerHealth _playerHealth;
         private DamageTextSpawner _damageHealthSpawner;
         private WaitForSeconds _tick = new WaitForSeconds(1f);
@@ -40,7 +41,7 @@ namespace Enemy
             _damageHealthSpawner.Activate(transform, (int)damage);
             if (CurrentHealth <= 0)
             {
-                Instantiate(_deathParticleSystem, transform.position, Quaternion.identity);
+                _deathParticleSpawner?.Spawn();
                 gameObject.SetActive(false);
                 ChanceToDropExperience();
                 

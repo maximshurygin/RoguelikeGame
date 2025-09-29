@@ -14,6 +14,8 @@ GameObject:
   - component: {fileID: 5156614277611326641}
   - component: {fileID: 3820282955432613351}
   - component: {fileID: 4712944165708243682}
+  - component: {fileID: -3484070628384867886}
+  - component: {fileID: -6746207356984971307}
   m_Layer: 7
   m_Name: Goblin
   m_TagString: Untagged
@@ -71,7 +73,7 @@ MonoBehaviour:
   damageAudioSource: {fileID: 4712944165708243682}
   damageFlash: {fileID: 6379512721831625469}
   _enemyType: 1
-  _deathParticleSystem: {fileID: 7394869532102232870, guid: 957bd4df2b3f14a6cb3f6af4bc50c3e5, type: 3}
+  _deathParticleSpawner: {fileID: -3484070628384867886}
 --- !u!114 &5156614277611326641
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -226,6 +228,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-3484070628384867886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834652747247607264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bbd03d2a460404c9d4d4fe453dbb1bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectPool: {fileID: -6746207356984971307}
+--- !u!114 &-6746207356984971307
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834652747247607264}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0db3c1a6c4422e985be19478420283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 7909976398742610268, guid: 957bd4df2b3f14a6cb3f6af4bc50c3e5, type: 3}
 --- !u!1 &5606851307280567303
 GameObject:
   m_ObjectHideFlags: 0

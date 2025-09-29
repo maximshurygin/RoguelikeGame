@@ -16,6 +16,7 @@ namespace DI
         [SerializeField] private PlayerUpgrade _playerUpgrade;
         [SerializeField] private ExperienceSpawner _experienceSpawner;
         [SerializeField] private DamageTextSpawner _damageTextSpawner;
+        [SerializeField] private Transform _particleContainer;
 
 
         public override void InstallBindings()
@@ -27,6 +28,7 @@ namespace DI
             Container.Bind<PlayerUpgrade>().FromInstance(_playerUpgrade).AsSingle().NonLazy();
             Container.Bind<ExperienceSpawner>().FromInstance(_experienceSpawner).AsSingle().NonLazy();
             Container.Bind<DamageTextSpawner>().FromInstance(_damageTextSpawner).AsSingle().NonLazy();
+            Container.Bind<Transform>().FromInstance(_particleContainer).AsSingle().NonLazy();
 
         }
     }

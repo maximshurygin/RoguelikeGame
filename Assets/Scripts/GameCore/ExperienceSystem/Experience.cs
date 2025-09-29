@@ -7,7 +7,7 @@ namespace GameCore.ExperienceSystem
 {
     public class Experience : MonoBehaviour
     {
-        [SerializeField] private ParticleSystem _experienceParticleSystem;
+        [SerializeField] private ParticleSpawner _expParticleSpawner;
         private float _expValue;
 
         public float ExpValue
@@ -40,7 +40,7 @@ namespace GameCore.ExperienceSystem
             {
                 _experienceSystem.ExperienceAddValue(_expValue);
                 _experienceSystem.OnExperiencePickUp?.Invoke(_expValue);
-                Instantiate(_experienceParticleSystem, transform.position, Quaternion.identity);
+                _expParticleSpawner.Spawn();
                 gameObject.SetActive(false);
             }
         }

@@ -11,6 +11,8 @@ GameObject:
   - component: {fileID: 6468691899983889386}
   - component: {fileID: 771060656100950655}
   - component: {fileID: 2977632937496713330}
+  - component: {fileID: 9109440735812257054}
+  - component: {fileID: 7203312428093698520}
   m_Layer: 9
   m_Name: Experience
   m_TagString: Untagged
@@ -46,7 +48,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 73de0467aec54bacbb0616b47d698d3e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _experienceParticleSystem: {fileID: 7394869532102232870, guid: 3223700c3f0314105ab875bde1039a2c, type: 3}
+  _expParticleSpawner: {fileID: 9109440735812257054}
 --- !u!58 &2977632937496713330
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -82,6 +84,32 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.18
+--- !u!114 &9109440735812257054
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762934001627039722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bbd03d2a460404c9d4d4fe453dbb1bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectPool: {fileID: 7203312428093698520}
+--- !u!114 &7203312428093698520
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1762934001627039722}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0db3c1a6c4422e985be19478420283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 7909976398742610268, guid: 3223700c3f0314105ab875bde1039a2c, type: 3}
 --- !u!1 &8503078405876390599
 GameObject:
   m_ObjectHideFlags: 0

@@ -14,7 +14,8 @@ GameObject:
   - component: {fileID: 569094830460251488}
   - component: {fileID: 5923620534798478228}
   - component: {fileID: -3730161669133530954}
-  - component: {fileID: 1963466348219178767}
+  - component: {fileID: -16002706327694496}
+  - component: {fileID: 1683067583646376666}
   m_Layer: 7
   m_Name: Axolot
   m_TagString: Untagged
@@ -117,7 +118,7 @@ MonoBehaviour:
   damageAudioSource: {fileID: -3730161669133530954}
   damageFlash: {fileID: 5720555080775072849}
   _enemyType: 0
-  _deathParticleSystem: {fileID: 7394869532102232870, guid: 957bd4df2b3f14a6cb3f6af4bc50c3e5, type: 3}
+  _deathParticleSpawner: {fileID: -16002706327694496}
 --- !u!114 &5923620534798478228
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -227,27 +228,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!95 &1963466348219178767
-Animator:
-  serializedVersion: 5
+--- !u!114 &-16002706327694496
+MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 877815196246103951}
   m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: dddaab140a7994f1690093925cc64746, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0bbd03d2a460404c9d4d4fe453dbb1bb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _objectPool: {fileID: 1683067583646376666}
+--- !u!114 &1683067583646376666
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 877815196246103951}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8b0db3c1a6c4422e985be19478420283, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _prefab: {fileID: 7909976398742610268, guid: 957bd4df2b3f14a6cb3f6af4bc50c3e5, type: 3}
 --- !u!1 &5728722844729380977
 GameObject:
   m_ObjectHideFlags: 0
