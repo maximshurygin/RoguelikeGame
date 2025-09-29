@@ -46,10 +46,10 @@ namespace Enemy.Weapon
         {
             while (true)
             {
-                var playerObj = Physics2D.OverlapCircle(transform.position, _range, _layerMask);
-                if (playerObj != null && playerObj.TryGetComponent(out PlayerHealth player))
+                var playerCollider = Physics2D.OverlapCircle(transform.position, _range, _layerMask);
+                if (playerCollider != null && playerCollider.TryGetComponent(out PlayerHealth player))
                 {
-                    Vector3 targetPosition = playerObj.transform.position;
+                    Vector3 targetPosition = playerCollider.transform.position;
                     _direction = (targetPosition - transform.position).normalized;
                     float angle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
                     GameObject fireballObject = _objectPool.GetFromPool();
