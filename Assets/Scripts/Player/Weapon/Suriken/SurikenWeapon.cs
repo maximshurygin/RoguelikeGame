@@ -23,10 +23,6 @@ namespace Player.Weapon.Suriken
         {
             SetStats(0);
             _surikenCoroutine = StartCoroutine(SpawnSuriken());
-            LevelUp();
-            LevelUp();
-            LevelUp();
-            LevelUp();
         }
 
         public void Deactivate()

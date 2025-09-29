@@ -1,3 +1,4 @@
+using Enemy;
 using UnityEngine;
 using Zenject;
 
@@ -28,7 +29,7 @@ namespace Player.Weapon.Bow
         protected override void OnTriggerEnter2D(Collider2D other)
         {
             base.OnTriggerEnter2D(other);
-            if (_bowWeapon.CurrentLevel <= 4)
+            if (_bowWeapon.CurrentLevel <= 4 && other.TryGetComponent(out EnemyHealth enemyHealth))
             {
                 gameObject.SetActive(false);
             }

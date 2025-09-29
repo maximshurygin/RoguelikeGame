@@ -11,13 +11,23 @@ namespace Enemy
     {
         [SerializeField] private float timeToSpawn;
         [SerializeField] private Transform minPos, maxPos;
+
+        public Transform MinPos => minPos;
+        public Transform MaxPos => maxPos;
+
         [SerializeField] private Transform enemyContainer;
         [SerializeField] private ObjectPool _enemyPool;
         
+        public Transform EnemyContainer => enemyContainer;
+        public ObjectPool EnemyPool => _enemyPool;
         private PlayerMovement _playerMovement;
         private WaitForSeconds _interval;
         private GetRandomSpawnPoint _spawnPoint;
         private Coroutine _spawnCoroutine;
+
+        public PlayerMovement PlayerMovement => _playerMovement;
+        public WaitForSeconds Interval => _interval;
+        public GetRandomSpawnPoint SpawnPoint => _spawnPoint;
 
         [Inject]
         public void Construct(GetRandomSpawnPoint getRandomSpawnPoint, PlayerMovement playerMovement)
@@ -31,12 +41,12 @@ namespace Enemy
             _interval = new WaitForSeconds(timeToSpawn);
         }
 
-        public void Activate()
+        public virtual void Activate()
         {
             _spawnCoroutine = StartCoroutine(Spawn());
         }
 
-        public void Deactivate()
+        public virtual void Deactivate()
         {
             if (_spawnCoroutine != null)
             {

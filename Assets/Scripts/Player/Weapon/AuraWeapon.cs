@@ -20,12 +20,8 @@ namespace Player.Weapon
 
         protected override void Start()
         {
-            base.Start();
+            SetStats(0);
             Activate();
-            LevelUp();
-            LevelUp();
-            LevelUp();
-            LevelUp();
         }
         
         protected override void OnTriggerEnter2D(Collider2D other)
@@ -46,7 +42,6 @@ namespace Player.Weapon
         
         public void Activate()
         {
-            SetStats(0);
             _auraCoroutine = StartCoroutine(CheckZone());
         }
 

@@ -117,6 +117,7 @@ MonoBehaviour:
   damageAudioSource: {fileID: -3730161669133530954}
   damageFlash: {fileID: 5720555080775072849}
   _enemyType: 0
+  _deathParticleSystem: {fileID: 7394869532102232870, guid: 957bd4df2b3f14a6cb3f6af4bc50c3e5, type: 3}
 --- !u!114 &5923620534798478228
 MonoBehaviour:
   m_ObjectHideFlags: 0

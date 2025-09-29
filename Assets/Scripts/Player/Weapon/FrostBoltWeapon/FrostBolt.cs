@@ -41,7 +41,7 @@ namespace Player.Weapon.FrostBoltWeapon
                 enemy.GetComponent<EnemyMove>()?.SlowDown(slowdownRate, slowdownDuration);
             }
 
-            if (_frostBoltWeapon.CurrentLevel <= 4)
+            if (_frostBoltWeapon.CurrentLevel <= 4 && other.TryGetComponent(out EnemyHealth enemyHealth))
             {
                 gameObject.SetActive(false);
             }

@@ -17,7 +17,7 @@ namespace Player.Weapon
 
         protected override void Start()
         {
-            base.Start();
+            SetStats(0);
             _swordCollider.enabled = false;
         }
 

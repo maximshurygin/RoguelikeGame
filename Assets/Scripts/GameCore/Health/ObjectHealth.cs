@@ -22,8 +22,7 @@ namespace GameCore.Health
 
         public virtual void TakeDamage(float damage)
         {
-            if (damage <= 0)
-                if (damage <= 0) throw new ArgumentOutOfRangeException(nameof(damage));
+            if (damage <= 0) throw new ArgumentOutOfRangeException(nameof(damage));
             currentHealth -= damage;
             
             damageFlash?.Flash();

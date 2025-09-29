@@ -1,6 +1,8 @@
 using System.Collections;
 using GameCore.ExperienceSystem;
 using GameCore.Health;
+using GameCore.UI;
+using Player;
 using UnityEngine;
 using Zenject;
 
@@ -10,29 +12,42 @@ namespace Enemy
     {
         Easy,
         Medium,
-        Hard
+        Hard,
+        Boss
     }
     public class EnemyHealth: ObjectHealth
     {
         [SerializeField] private EnemyType _enemyType;
+        [SerializeField] private ParticleSystem _deathParticleSystem;
+        private PlayerHealth _playerHealth;
+        private DamageTextSpawner _damageHealthSpawner;
         private WaitForSeconds _tick = new WaitForSeconds(1f);
         private ExperienceSpawner _experienceSpawner;
         private float _chanceToDropExp = 33f;
         private float _experienceToDrop = 3f;
 
         [Inject]
-        private void Construct(ExperienceSpawner experienceSpawner)
+        private void Construct(ExperienceSpawner experienceSpawner, PlayerHealth playerHealth, DamageTextSpawner damageHealthSpawner)
         {
             _experienceSpawner = experienceSpawner;
+            _playerHealth = playerHealth;
+            _damageHealthSpawner = damageHealthSpawner;
         }
         
         public override void TakeDamage(float damage)
         {
             base.TakeDamage(damage);
+            _damageHealthSpawner.Activate(transform, (int)damage);
             if (CurrentHealth <= 0)
             {
+                Instantiate(_deathParticleSystem, transform.position, Quaternion.identity);
                 gameObject.SetActive(false);
                 ChanceToDropExperience();
+                
+                if (_enemyType == EnemyType.Boss)
+                {
+                    _playerHealth.TakeHeal(float.MaxValue);
+                }
             }
         }
 
@@ -51,6 +66,10 @@ namespace Enemy
                 case EnemyType.Hard:
                     _chanceToDropExp = 66f;
                     _experienceToDrop = 7f;
+                    break;
+                case EnemyType.Boss:
+                    _chanceToDropExp = 100f;
+                    _experienceToDrop = 50f;
                     break;
             }
 

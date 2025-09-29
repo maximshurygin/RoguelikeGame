@@ -1,7 +1,7 @@
 using GameCore;
 using GameCore.ExperienceSystem;
-using GameCore.GameObjectPool;
 using GameCore.LevelSystem;
+using GameCore.UI;
 using GameCore.UpgradeSystem;
 using UnityEngine;
 using Zenject;
@@ -15,6 +15,7 @@ namespace DI
         [SerializeField] private ExperienceSystem _experienceSystem;
         [SerializeField] private PlayerUpgrade _playerUpgrade;
         [SerializeField] private ExperienceSpawner _experienceSpawner;
+        [SerializeField] private DamageTextSpawner _damageTextSpawner;
 
 
         public override void InstallBindings()
@@ -25,6 +26,7 @@ namespace DI
             Container.Bind<ExperienceSystem>().FromInstance(_experienceSystem).AsSingle().NonLazy();
             Container.Bind<PlayerUpgrade>().FromInstance(_playerUpgrade).AsSingle().NonLazy();
             Container.Bind<ExperienceSpawner>().FromInstance(_experienceSpawner).AsSingle().NonLazy();
+            Container.Bind<DamageTextSpawner>().FromInstance(_damageTextSpawner).AsSingle().NonLazy();
 
         }
     }

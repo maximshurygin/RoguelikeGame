@@ -21,10 +21,6 @@ namespace Player.Weapon.Trap
         private void OnEnable()
         {
             Activate();
-            LevelUp();
-            LevelUp();
-            LevelUp();
-            LevelUp();
         }
         
         public void Activate()
