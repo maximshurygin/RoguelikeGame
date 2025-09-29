@@ -7,7 +7,6 @@ namespace Enemy.Weapon
     public class EnemyFireball : Projectile
     {
         [SerializeField] private Transform _sprite;
-
         private float _speed;
 
         public void Init(float duration, float speed, float damage)
