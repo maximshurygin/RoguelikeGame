@@ -1,4 +1,5 @@
 using System;
+using GameCore.UpgradeSystem;
 using UnityEngine;
 
 namespace GameCore.ExperienceSystem
@@ -35,6 +36,8 @@ namespace GameCore.ExperienceSystem
             _currentLevel++;
             _experienceToNextLevel += 2;
             _audioSource.PlayOneShot(_audioSource.clip);
+            _upgradeWindow.SetActive(true);
+            _upgradeWindow.GetComponent<UpgradeWindow>().GetRandomCards();
         }
     }
 }

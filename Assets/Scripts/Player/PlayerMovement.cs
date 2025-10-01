@@ -37,14 +37,17 @@ namespace Player
             Move();
             Interact();
         }
+
+        public void UpgradeSpeed()
+        {
+            moveSpeed += 0.3f;
+        }
         
         private void Move()
         {
             float horizontal = _device == Device.Joystick&& joystick ? joystick.Horizontal : Input.GetAxisRaw("Horizontal");
             float vertical = _device == Device.Joystick&& joystick ? joystick.Vertical : Input.GetAxisRaw("Vertical");
             
-            // _movement = new Vector3(horizontal, vertical, 0);
-            // transform.position += _movement.normalized * (moveSpeed * Time.deltaTime);
             _movement = new Vector3(horizontal, vertical, 0).normalized;
             _rigidbody.velocity = _movement * moveSpeed;
             animator.SetFloat("Horizontal", _movement.x);

@@ -1,4 +1,5 @@
 using Player;
+using Player.Weapon;
 using Player.Weapon.Bow;
 using Player.Weapon.FrostBoltWeapon;
 using Player.Weapon.Suriken;
@@ -16,6 +17,9 @@ namespace DI
         [SerializeField] private FrostBoltWeapon frostBoltWeapon;
         [SerializeField] private TrapWeapon trapWeapon;
         [SerializeField] private BowWeapon bowWeapon;
+        [SerializeField] private FireBallWeapon _fireBallWeapon;
+        [SerializeField] private AuraWeapon _auraWeapon;
+        [SerializeField] private SwordWeapon _swordWeapon;
 
 
 
@@ -29,7 +33,9 @@ namespace DI
             Container.Bind<FrostBoltWeapon>().FromInstance(frostBoltWeapon).AsSingle().NonLazy();
             Container.Bind<TrapWeapon>().FromInstance(trapWeapon).AsSingle().NonLazy();
             Container.Bind<BowWeapon>().FromInstance(bowWeapon).AsSingle().NonLazy();
-
+            Container.Bind<FireBallWeapon>().FromInstance(_fireBallWeapon).AsSingle().NonLazy();
+            Container.Bind<AuraWeapon>().FromInstance(_auraWeapon).AsSingle().NonLazy();
+            Container.Bind<SwordWeapon>().FromInstance(_swordWeapon).AsSingle().NonLazy();
         }
     }
 }

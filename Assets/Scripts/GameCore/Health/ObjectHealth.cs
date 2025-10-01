@@ -5,8 +5,8 @@ namespace GameCore.Health
 {
     public abstract class ObjectHealth : MonoBehaviour, IDamageable
     {
-        [SerializeField] private float maxHealth;
-        [SerializeField] private float currentHealth;
+        [SerializeField] protected float maxHealth;
+        [SerializeField] protected float currentHealth;
         [SerializeField] private Animator damageAnimator;
         [SerializeField] private AudioSource damageAudioSource;
         [SerializeField] private DamageFlash damageFlash;

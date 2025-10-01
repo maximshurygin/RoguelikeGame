@@ -1,6 +1,7 @@
 using GameCore;
 using GameCore.ExperienceSystem;
 using GameCore.LevelSystem;
+using GameCore.Pause;
 using GameCore.UI;
 using GameCore.UpgradeSystem;
 using UnityEngine;
@@ -17,6 +18,10 @@ namespace DI
         [SerializeField] private ExperienceSpawner _experienceSpawner;
         [SerializeField] private DamageTextSpawner _damageTextSpawner;
         [SerializeField] private Transform _particleContainer;
+        [SerializeField] private UpgradeWindow _upgradeWindow;
+        [SerializeField] private GamePause _gamePause;
+
+        
 
 
         public override void InstallBindings()
@@ -29,6 +34,8 @@ namespace DI
             Container.Bind<ExperienceSpawner>().FromInstance(_experienceSpawner).AsSingle().NonLazy();
             Container.Bind<DamageTextSpawner>().FromInstance(_damageTextSpawner).AsSingle().NonLazy();
             Container.Bind<Transform>().FromInstance(_particleContainer).AsSingle().NonLazy();
+            Container.Bind<UpgradeWindow>().FromInstance(_upgradeWindow).AsSingle().NonLazy();
+            Container.Bind<GamePause>().FromInstance(_gamePause).AsSingle().NonLazy();
 
         }
     }

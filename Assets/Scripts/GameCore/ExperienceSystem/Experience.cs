@@ -9,16 +9,16 @@ namespace GameCore.ExperienceSystem
     {
         [SerializeField] private ParticleSpawner _expParticleSpawner;
         private float _expValue;
-
+        private ExperienceSystem _experienceSystem;
+        private PlayerHealth _playerHealth;
+        private PlayerUpgrade _playerUpgrade;
+        private float _distanceToPickUp;
+        
         public float ExpValue
         {
             get => _expValue;
             set => _expValue = value;
         }
-        private ExperienceSystem _experienceSystem;
-        private PlayerHealth _playerHealth;
-        private PlayerUpgrade _playerUpgrade;
-        private float _distanceToPickUp;
 
         [Inject]
         private void Construct(ExperienceSystem experienceSystem, PlayerHealth playerHealth,
