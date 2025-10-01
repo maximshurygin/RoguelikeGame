@@ -39,7 +39,7 @@ namespace GameCore.UI
                 color.a = f;
                 yield return _wait;
             }
-            targetEffect.SetActive(true);
+            targetEffect.SetActive(false);
         }
     }
 }

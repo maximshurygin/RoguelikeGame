@@ -1,6 +1,7 @@
 using GameCore;
 using GameCore.ExperienceSystem;
 using GameCore.LevelSystem;
+using GameCore.Loot;
 using GameCore.Pause;
 using GameCore.UI;
 using GameCore.UpgradeSystem;
@@ -20,6 +21,7 @@ namespace DI
         [SerializeField] private Transform _particleContainer;
         [SerializeField] private UpgradeWindow _upgradeWindow;
         [SerializeField] private GamePause _gamePause;
+        [SerializeField] private CoinsUIUpdater _coinsUIUpdater;
 
         
 
@@ -36,6 +38,8 @@ namespace DI
             Container.Bind<Transform>().FromInstance(_particleContainer).AsSingle().NonLazy();
             Container.Bind<UpgradeWindow>().FromInstance(_upgradeWindow).AsSingle().NonLazy();
             Container.Bind<GamePause>().FromInstance(_gamePause).AsSingle().NonLazy();
+            Container.Bind<CoinsUIUpdater>().FromInstance(_coinsUIUpdater).AsSingle().NonLazy();
+            Container.Bind<CoinKeeper>().FromNew().AsSingle().NonLazy();
 
         }
     }
