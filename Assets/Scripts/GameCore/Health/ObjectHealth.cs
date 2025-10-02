@@ -42,6 +42,7 @@ namespace GameCore.Health
             if (value <= 0)
                 throw new ArgumentOutOfRangeException(nameof(value));
             currentHealth = Mathf.Min(currentHealth + value, maxHealth);
+            OnHealthChanged?.Invoke();
         }
     }
 }
