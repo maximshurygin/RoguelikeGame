@@ -22,6 +22,8 @@ namespace DI
         [SerializeField] private UpgradeWindow _upgradeWindow;
         [SerializeField] private GamePause _gamePause;
         [SerializeField] private CoinsUIUpdater _coinsUIUpdater;
+        [SerializeField] private TreasureWindow _treasureWindow;
+        [SerializeField] private RewardCoinsAnimation _rewardCoinsAnimation;
 
         
 
@@ -40,6 +42,8 @@ namespace DI
             Container.Bind<GamePause>().FromInstance(_gamePause).AsSingle().NonLazy();
             Container.Bind<CoinsUIUpdater>().FromInstance(_coinsUIUpdater).AsSingle().NonLazy();
             Container.Bind<CoinKeeper>().FromNew().AsSingle().NonLazy();
+            Container.Bind<TreasureWindow>().FromInstance(_treasureWindow).AsSingle().NonLazy();
+            Container.Bind<RewardCoinsAnimation>().FromInstance(_rewardCoinsAnimation).AsSingle().NonLazy();
 
         }
     }
