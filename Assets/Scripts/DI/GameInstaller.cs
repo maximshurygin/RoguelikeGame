@@ -24,6 +24,7 @@ namespace DI
         [SerializeField] private CoinsUIUpdater _coinsUIUpdater;
         [SerializeField] private TreasureWindow _treasureWindow;
         [SerializeField] private RewardCoinsAnimation _rewardCoinsAnimation;
+        [SerializeField] private BombSpawner _bombSpawner;
 
         
 
@@ -44,6 +45,7 @@ namespace DI
             Container.Bind<CoinKeeper>().FromNew().AsSingle().NonLazy();
             Container.Bind<TreasureWindow>().FromInstance(_treasureWindow).AsSingle().NonLazy();
             Container.Bind<RewardCoinsAnimation>().FromInstance(_rewardCoinsAnimation).AsSingle().NonLazy();
+            Container.Bind<BombSpawner>().FromInstance(_bombSpawner).AsSingle().NonLazy();
 
         }
     }

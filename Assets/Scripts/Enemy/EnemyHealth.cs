@@ -2,6 +2,7 @@ using System.Collections;
 using GameCore;
 using GameCore.ExperienceSystem;
 using GameCore.Health;
+using GameCore.Loot;
 using GameCore.UI;
 using Player;
 using UnityEngine;
@@ -24,15 +25,19 @@ namespace Enemy
         private DamageTextSpawner _damageHealthSpawner;
         private WaitForSeconds _tick = new WaitForSeconds(1f);
         private ExperienceSpawner _experienceSpawner;
+        private BombSpawner _bombSpawner;
         private float _chanceToDropExp = 33f;
         private float _experienceToDrop = 3f;
+        private float _chanceToDropBomb = 15f;
+
 
         [Inject]
-        private void Construct(ExperienceSpawner experienceSpawner, PlayerHealth playerHealth, DamageTextSpawner damageHealthSpawner)
+        private void Construct(ExperienceSpawner experienceSpawner, PlayerHealth playerHealth, DamageTextSpawner damageHealthSpawner, BombSpawner bombSpawner)
         {
             _experienceSpawner = experienceSpawner;
             _playerHealth = playerHealth;
             _damageHealthSpawner = damageHealthSpawner;
+            _bombSpawner = bombSpawner;
         }
         
         public override void TakeDamage(float damage)
@@ -73,12 +78,14 @@ namespace Enemy
                     _experienceToDrop = 50f;
                     break;
             }
-
+            
             if (Random.Range(0f, 100f) <= _chanceToDropExp)
             {
-                Vector3 randomSpawnLocation = transform.position +
-                                              new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0f);
-                _experienceSpawner.Spawn(randomSpawnLocation, _experienceToDrop);
+                _experienceSpawner.Spawn(GetRandomSpawnLocation(), _experienceToDrop);
+            }
+            else if (Random.Range(0f, 100f) <= _chanceToDropBomb)
+            {
+                _bombSpawner.Spawn(GetRandomSpawnLocation());
             }
         }
 
@@ -108,6 +115,13 @@ namespace Enemy
                 TakeDamage(roundDamage);
                 yield return _tick;
             }
+        }
+
+        private Vector3 GetRandomSpawnLocation()
+        {
+            Vector3 randomSpawnLocation = transform.position +
+                                          new Vector3(Random.Range(-0.5f, 0.5f), Random.Range(-0.5f, 0.5f), 0f);
+            return randomSpawnLocation;
         }
     }
 }
