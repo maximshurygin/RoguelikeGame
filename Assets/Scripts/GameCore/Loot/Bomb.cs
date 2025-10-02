@@ -21,7 +21,6 @@ namespace GameCore.Loot
             _isActiveted = false;
             _animator.SetTrigger("Idle");
             _spriteRenderer.transform.localScale = _normalSpriteScale;
-            gameObject.layer = LayerMask.NameToLayer("Loot");
         }
         
 
@@ -43,7 +42,6 @@ namespace GameCore.Loot
         private void Explode()
         {
             _isActiveted = true;
-            gameObject.layer = LayerMask.NameToLayer("Bomb");
             _spriteRenderer.transform.localScale = _increasedSpriteScale;
 
             Collider2D[] enemiesInRange =
