@@ -7,6 +7,7 @@ namespace GameCore.ExperienceSystem
 {
     public class Experience : MonoBehaviour
     {
+        [SerializeField] private AudioSource _audioSource;
         [SerializeField] private ParticleSpawner _expParticleSpawner;
         private float _expValue;
         private ExperienceSystem _experienceSystem;
@@ -41,6 +42,7 @@ namespace GameCore.ExperienceSystem
                 _experienceSystem.ExperienceAddValue(_expValue);
                 _experienceSystem.OnExperiencePickUp?.Invoke(_expValue);
                 _expParticleSpawner.Spawn();
+                AudioSource.PlayClipAtPoint(_audioSource.clip, transform.position, 0.4f);
                 gameObject.SetActive(false);
             }
         }
