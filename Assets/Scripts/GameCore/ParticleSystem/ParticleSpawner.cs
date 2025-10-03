@@ -2,11 +2,11 @@ using GameCore.GameObjectPool;
 using UnityEngine;
 using Zenject;
 
-namespace GameCore
+namespace GameCore.ParticleSystem
 {
     public class ParticleSpawner : MonoBehaviour
     {
-        [SerializeField] private ObjectPool _objectPool;
+        [SerializeField] protected ObjectPool _objectPool;
         private Transform _particleContainer;
 
         [Inject]
@@ -14,10 +14,10 @@ namespace GameCore
         {
             _particleContainer = particleContainer;
         }
-        public void Spawn()
+        public virtual void Spawn()
         {
             var experienceObject = _objectPool.GetFromPool();
-            experienceObject.transform.SetParent(_particleContainer);
+            experienceObject.transform.SetParent(_particleContainer, true);
             experienceObject.transform.position = transform.position;
         }
     }

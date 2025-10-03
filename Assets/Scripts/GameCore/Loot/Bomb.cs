@@ -35,7 +35,7 @@ namespace GameCore.Loot
         protected override void PickUp()
         {
             _animator.SetTrigger("Explode");
-            AudioSource.PlayClipAtPoint(_audioSource.clip, transform.position);
+            AudioSource.PlayClipAtPoint(_audioSource.clip, transform.position, 0.6f);
         }
         
 

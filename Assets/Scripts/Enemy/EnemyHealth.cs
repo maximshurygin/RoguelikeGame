@@ -3,6 +3,7 @@ using GameCore;
 using GameCore.ExperienceSystem;
 using GameCore.Health;
 using GameCore.Loot;
+using GameCore.ParticleSystem;
 using GameCore.UI;
 using Player;
 using UnityEngine;

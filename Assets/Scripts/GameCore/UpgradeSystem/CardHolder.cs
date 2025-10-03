@@ -23,7 +23,7 @@ namespace GameCore.UpgradeSystem
 
         private void Start()
         {
-            _nameText.text = _upgradeCard.name;
+            _nameText.text = _upgradeCard.Name;
             _icon.sprite = _upgradeCard.Icon;
             _descriptionText.text = _upgradeCard.Description;
             _id = _upgradeCard.ID;

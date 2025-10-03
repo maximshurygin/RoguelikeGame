@@ -1,3 +1,4 @@
+using GameCore.ParticleSystem;
 using Player;
 using Player.Weapon;
 using Player.Weapon.Bow;
@@ -11,6 +12,10 @@ namespace GameCore.UpgradeSystem
 {
     public class PlayerUpgrade : MonoBehaviour
     {
+        [SerializeField] private WeaponUpgradeParticleSpawner _weaponUpgradeParticleSpawner;
+        [SerializeField] private PlayerUpgradeParticleSpawner _playerUpgradeParticleSpawner;
+
+        
         private PlayerHealth _playerHealth;
         private PlayerMovement _playerMovement;
 
@@ -56,25 +61,30 @@ namespace GameCore.UpgradeSystem
         public void UpgradeHealth()
         {
             _playerHealth.UpgradeHealth();
+            SpawnPlayerUpgradeParticles();
         }
 
         public void UpgradeRegeneration()
         {
             _playerHealth.UpgradeRegeneration();
+            SpawnPlayerUpgradeParticles();
         }
 
         public void UpgradeSpeed()
         {
             _playerMovement.UpgradeSpeed();
+            SpawnPlayerUpgradeParticles();
         }
 
         public void UpgradeRangeExp()
         {
             RangeExp++;
+            SpawnPlayerUpgradeParticles();
         }
 
         public void UpgradeWeapon(BaseWeapon weapon)
         {
+            SpawnWeaponUpgradeParticles();
             if (weapon.gameObject.activeSelf)
             {
                 weapon.LevelUp();
@@ -83,6 +93,16 @@ namespace GameCore.UpgradeSystem
             {
                 weapon.gameObject.SetActive(true);
             }
+        }
+
+        private void SpawnPlayerUpgradeParticles()
+        {
+            _playerUpgradeParticleSpawner.Spawn();
+        }
+        
+        private void SpawnWeaponUpgradeParticles()
+        {
+            _weaponUpgradeParticleSpawner.Spawn();
         }
     }
 }
