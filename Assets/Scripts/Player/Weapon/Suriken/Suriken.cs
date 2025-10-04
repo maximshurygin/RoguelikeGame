@@ -1,4 +1,5 @@
 using System;
+using GameCore.Pause;
 using UnityEngine;
 using Zenject;
 
@@ -10,12 +11,14 @@ namespace Player.Weapon.Suriken
         private SurikenWeapon _surikenWeapon;
         private float elapsedTime;
         private PlayerMovement  _playerMovement;
+        private GamePause _gamePause;
 
         [Inject]
-        private void Construct(SurikenWeapon surikenWeapon, PlayerMovement playerMovement)
+        private void Construct(SurikenWeapon surikenWeapon, PlayerMovement playerMovement, GamePause gamePause)
         {
             _surikenWeapon = surikenWeapon;
             _playerMovement = playerMovement;
+            _gamePause = gamePause;
         }
         
         protected override void OnEnable()
@@ -28,6 +31,7 @@ namespace Player.Weapon.Suriken
 
         private void Update()
         {
+            if (_gamePause.IsStopped) return;
             elapsedTime += Time.deltaTime;
             _sprite.transform.Rotate(0,0,500f * Time.deltaTime);
             if (_surikenWeapon.CurrentLevel < 5)

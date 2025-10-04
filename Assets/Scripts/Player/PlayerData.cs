@@ -24,9 +24,9 @@ namespace Player
             Coins++;
         }
 
-        public void AddRewardCoins(int amount)
+        public void AddCoins(int amount)
         {
-            if (amount <= 0)
+            if (amount < 0)
             {
                 throw new ArgumentOutOfRangeException(nameof(amount));
             }

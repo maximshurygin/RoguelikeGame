@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using GameCore;
 using GameCore.GameObjectPool;
+using GameCore.Pause;
 using UnityEngine;
+using Zenject;
 
 namespace Player.Weapon.FrostBoltWeapon
 {
@@ -16,12 +18,18 @@ namespace Player.Weapon.FrostBoltWeapon
         private float _duration, _speed, _slowdownRate;
         private WaitForSeconds _slowdownDuration;
         private Vector3 _direction;
+        private GamePause _gamePause;
 
         public float Duration => _duration;
         public float Speed => _speed;
         public float SlowdownRate => _slowdownRate;
         public WaitForSeconds SlowdownDuration => _slowdownDuration;
 
+        [Inject]
+        private void Construct(GamePause gamePause)
+        {
+            _gamePause = gamePause;
+        }
 
         private void OnEnable()
         {
@@ -56,6 +64,11 @@ namespace Player.Weapon.FrostBoltWeapon
         {
             while (true)
             {
+                while (_gamePause.IsStopped)
+                {
+                    yield return null;
+                }
+                
                 for (int i = 0; i < _shootPoints.Count; i++)
                 {
                     _direction = (_shootPoints[i].position - transform.position).normalized;

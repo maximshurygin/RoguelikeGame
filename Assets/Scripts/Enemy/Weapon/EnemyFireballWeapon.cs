@@ -1,9 +1,11 @@
 using System.Collections;
 using GameCore;
 using GameCore.GameObjectPool;
+using GameCore.Pause;
 using Player;
 using Player.Weapon;
 using UnityEngine;
+using Zenject;
 
 namespace Enemy.Weapon
 {
@@ -16,6 +18,13 @@ namespace Enemy.Weapon
         private Coroutine _fireballCoroutine;
         private float _duration, _speed, _range;
         private Vector3 _direction;
+        private GamePause _gamePause;
+
+        [Inject]
+        private void Construct(GamePause gamePause)
+        {
+            _gamePause = gamePause;
+        }
 
         private void OnEnable() => Activate();
 
@@ -46,6 +55,11 @@ namespace Enemy.Weapon
         {
             while (true)
             {
+                while (_gamePause.IsStopped)
+                {
+                    yield return null;
+                }
+                
                 var playerCollider = Physics2D.OverlapCircle(transform.position, _range, _layerMask);
                 if (playerCollider != null && playerCollider.TryGetComponent(out PlayerHealth player))
                 {

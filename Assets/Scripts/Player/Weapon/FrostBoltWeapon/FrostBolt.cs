@@ -1,4 +1,5 @@
 using Enemy;
+using GameCore.Pause;
 using UnityEngine;
 using Zenject;
 
@@ -7,11 +8,13 @@ namespace Player.Weapon.FrostBoltWeapon
     public class FrostBolt : Projectile
     {
         private FrostBoltWeapon _frostBoltWeapon;
+        private GamePause _gamePause;
 
         [Inject]
-        private void Constuct(FrostBoltWeapon frostBoltWeapon)
+        private void Constuct(FrostBoltWeapon frostBoltWeapon, GamePause gamePause)
         {
             _frostBoltWeapon = frostBoltWeapon;
+            _gamePause = gamePause;
         }
 
         protected override void OnEnable()
@@ -23,6 +26,7 @@ namespace Player.Weapon.FrostBoltWeapon
 
         private void Update()
         {
+            if (_gamePause.IsStopped) return;
             transform.position += transform.right * (_frostBoltWeapon.Speed * Time.deltaTime);
         }
 

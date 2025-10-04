@@ -1,4 +1,5 @@
 using System.Collections;
+using GameCore.Pause;
 using Player;
 using UnityEngine;
 using Zenject;
@@ -15,12 +16,14 @@ namespace Enemy
         private WaitForSeconds _checkTime = new WaitForSeconds(3f);
         private Coroutine _slowdownCoroutine;
         private float moveSpeedTemp;
-        
+        private GamePause _gamePause;
+
 
         [Inject]
-        private void Construct(PlayerMovement playerMovement)
+        private void Construct(PlayerMovement playerMovement, GamePause gamePause)
         {
             _playerMovement = playerMovement;
+            _gamePause = gamePause;
         }
 
         private void Start()
@@ -41,6 +44,7 @@ namespace Enemy
         private void Update() => Move();
         private void Move()
         {
+            moveSpeed = _gamePause.IsStopped ? 0f : moveSpeedTemp;
             _direction = (_playerMovement.transform.position - transform.position).normalized;
             transform.position += _direction * (moveSpeed * Time.deltaTime);
             animator.SetFloat("Horizontal", _direction.x);

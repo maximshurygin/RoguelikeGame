@@ -1,4 +1,6 @@
+using GameCore.Pause;
 using UnityEngine;
+using Zenject;
 
 namespace Player.Weapon
 {
@@ -14,6 +16,14 @@ namespace Player.Weapon
         private float _nextAllowedAttackTime;
         private Vector3 _direction;
         private float _currentAngle;
+        private GamePause _gamePause;
+
+        [Inject]
+        private void Construct(GamePause gamePause)
+        {
+            _gamePause = gamePause;
+        }
+        
 
         protected override void Start()
         {
@@ -23,6 +33,8 @@ namespace Player.Weapon
 
         private void Update()
         {
+            if (_gamePause.IsStopped) return;
+
             _direction = _camera.ScreenToWorldPoint(Input.mousePosition) - transform.position;
 
             float targetAngle = Mathf.Atan2(_direction.y, _direction.x) * Mathf.Rad2Deg;
@@ -51,6 +63,7 @@ namespace Player.Weapon
 
         private void Attack()
         {
+            if (_gamePause.IsStopped) return;
             if (Time.time < _nextAllowedAttackTime) return;
             _swordCollider.enabled = true;
             _animator.SetTrigger("Attack");

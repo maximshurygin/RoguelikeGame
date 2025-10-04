@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Speed
   m_EditorClassIdentifier: 
   _name: Speed
-  _description: + 0.3 speed
+  _description: + 0.5 speed
   _icon: {fileID: -1563357889, guid: 8c76f63370c7249de82cf1229cf6e8ef, type: 3}
   _id: 3

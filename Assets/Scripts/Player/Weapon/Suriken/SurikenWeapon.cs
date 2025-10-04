@@ -1,7 +1,9 @@
 using System.Collections;
 using GameCore;
 using GameCore.GameObjectPool;
+using GameCore.Pause;
 using UnityEngine;
+using Zenject;
 
 namespace Player.Weapon.Suriken
 {
@@ -14,8 +16,15 @@ namespace Player.Weapon.Suriken
         private Coroutine _surikenCoroutine;
         private float _duration, _speed, _range;
         private Vector3 _direction;
+        private GamePause _gamePause;
         public float Duration => _duration;
         public float Speed => _speed;
+
+        [Inject]
+        private void Construct(GamePause gamePause)
+        {
+            _gamePause = gamePause;
+        }
 
         private void OnEnable() => Activate();
 
@@ -46,6 +55,11 @@ namespace Player.Weapon.Suriken
         {
             while (true)
             {
+                while (_gamePause.IsStopped)
+                {
+                    yield return null;
+                }
+                
                 Collider2D[] enemiesInRange = Physics2D.OverlapCircleAll(transform.position, _range, _layerMask);
                 if (enemiesInRange.Length > 0)
                 {

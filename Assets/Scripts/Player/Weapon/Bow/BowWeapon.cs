@@ -1,5 +1,7 @@
 using GameCore.GameObjectPool;
+using GameCore.Pause;
 using UnityEngine;
+using Zenject;
 
 namespace Player.Weapon.Bow
 {
@@ -26,10 +28,19 @@ namespace Player.Weapon.Bow
 
         private bool _isCharging;
         private float _chargeMultiplier;
+        
+        private GamePause _gamePause;
 
         public float Duration => _duration;
         public float Speed => _speed;
         public float ChargedDamage => Damage * _chargeMultiplier;
+
+
+        [Inject]
+        private void Construct(GamePause gamePause)
+        {
+            _gamePause = gamePause;
+        }
         
         protected override void Start()
         {
@@ -39,6 +50,7 @@ namespace Player.Weapon.Bow
 
         private void Update()
         {
+            if (_gamePause.IsStopped) return;
             Aim();
             HandleCharge();
         }

@@ -1,7 +1,9 @@
 using System.Collections;
 using GameCore;
 using GameCore.GameObjectPool;
+using GameCore.Pause;
 using UnityEngine;
+using Zenject;
 
 namespace Player.Weapon.Trap
 {
@@ -13,10 +15,16 @@ namespace Player.Weapon.Trap
         private Coroutine _trapCoroutine;
         private float _slowdownRate;
         private WaitForSeconds _slowdownDuration;
+        private GamePause _gamePause;
 
         public WaitForSeconds SlowdownDuration => _slowdownDuration;
         public float SlowdownRate => _slowdownRate;
 
+        [Inject]
+        private void Construct(GamePause gamePause)
+        {
+            _gamePause = gamePause;
+        }
 
         private void OnEnable()
         {
@@ -49,6 +57,10 @@ namespace Player.Weapon.Trap
         {
             while (true)
             {
+                while (_gamePause.IsStopped)
+                {
+                    yield return null;
+                }
                 GameObject trap = _objectPool.GetFromPool();
                 trap.transform.SetParent(_container);
                 trap.transform.position = transform.position;

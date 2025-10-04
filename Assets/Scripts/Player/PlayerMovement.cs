@@ -1,4 +1,6 @@
+using GameCore.Pause;
 using UnityEngine;
+using Zenject;
 
 namespace Player
 {
@@ -18,12 +20,21 @@ namespace Player
         private bool _isInteracting;
         private Vector3 _movement;
         private Rigidbody2D _rigidbody;
+        private GamePause _gamePause;
+        private float _initialSpeed;
+
+        [Inject]
+        private void Construct(GamePause gamePause)
+        {
+            _gamePause = gamePause;
+        }
         
         public Vector3 Movement => _movement;
 
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+            _initialSpeed = moveSpeed;
         }
         private void FixedUpdate()
         {
@@ -40,11 +51,13 @@ namespace Player
 
         public void UpgradeSpeed()
         {
-            moveSpeed += 0.3f;
+            _initialSpeed += 0.5f;
+            moveSpeed = _initialSpeed;
         }
         
         private void Move()
         {
+            moveSpeed = _gamePause.IsStopped ? 0f : _initialSpeed;
             float horizontal = _device == Device.Joystick&& joystick ? joystick.Horizontal : Input.GetAxisRaw("Horizontal");
             float vertical = _device == Device.Joystick&& joystick ? joystick.Vertical : Input.GetAxisRaw("Vertical");
             

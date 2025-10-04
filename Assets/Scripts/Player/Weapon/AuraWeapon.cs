@@ -2,7 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using Enemy;
 using GameCore;
+using GameCore.Pause;
 using UnityEngine;
+using Zenject;
 
 namespace Player.Weapon
 {
@@ -16,6 +18,13 @@ namespace Player.Weapon
         private Coroutine _auraCoroutine;
         private float _range;
         private float _slowdownRate;
+        private GamePause _gamePause;
+
+        [Inject]
+        private void Construct(GamePause gamePause)
+        {
+            _gamePause = gamePause;
+        }
 
 
         protected override void Start()
@@ -68,6 +77,11 @@ namespace Player.Weapon
         {
             while (true)
             {
+                while (_gamePause.IsStopped)
+                {
+                    yield return null;
+                }
+                
                 if (CurrentLevel < 5)
                 {
                     for (int i = 0; i < _enemyInZone.Count; i++)

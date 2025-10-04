@@ -9,14 +9,12 @@ namespace GameCore.Loot
     {
         private CoinsUIUpdater _coinsUIUpdater;
         private CoinKeeper _coinsKeeper;
-        private PlayerData _playerData;
 
         [Inject]
-        private void Construct(CoinsUIUpdater coinsUIUpdater, CoinKeeper coinsKeeper, PlayerData playerData)
+        private void Construct(CoinsUIUpdater coinsUIUpdater, CoinKeeper coinsKeeper)
         {
             _coinsUIUpdater = coinsUIUpdater;
             _coinsKeeper = coinsKeeper;
-            _playerData = playerData;
         }
 
         protected override void PickUp()
@@ -24,7 +22,6 @@ namespace GameCore.Loot
             base.PickUp();
             _coinsKeeper.AddCoin();
             _coinsUIUpdater.OnCountChange?.Invoke();
-            _playerData.AddCoin();
         }
     }
 }

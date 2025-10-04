@@ -19,20 +19,18 @@ namespace GameCore.UI
         private CoinKeeper _coinKeeper;
         private CoinsUIUpdater _coinsUIUpdater;
         private RewardCoinsAnimation _rewardCoinsAnimation;
-        private PlayerData _playerData;
 
         private int _randomCoinsToAdd;
         private WaitForSeconds _interval;
 
         [Inject]
         private void Construct(GamePause gamePause, CoinKeeper coinKeeper, CoinsUIUpdater coinsUIUpdater,
-            RewardCoinsAnimation rewardCoinsAnimation, PlayerData playerData)
+            RewardCoinsAnimation rewardCoinsAnimation)
         {
             _gamePause = gamePause;
             _coinKeeper = coinKeeper;
             _coinsUIUpdater = coinsUIUpdater;
             _rewardCoinsAnimation = rewardCoinsAnimation;
-            _playerData = playerData;
         }
 
         private void Start()
@@ -59,7 +57,6 @@ namespace GameCore.UI
         {
             _coinKeeper.AddCoins(_randomCoinsToAdd);
             _coinsUIUpdater.OnCountChange?.Invoke();
-            _playerData.AddRewardCoins(_randomCoinsToAdd);
         }
 
         private IEnumerator StartCalculate()

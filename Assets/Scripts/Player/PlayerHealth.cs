@@ -1,14 +1,26 @@
 using System;
 using System.Collections;
 using GameCore.Health;
+using GameCore.Pause;
 using UnityEngine;
+using Zenject;
 
 namespace Player
 {
     public class PlayerHealth: ObjectHealth
     {
+        [SerializeField] private Animator _animator;
+        [SerializeField] private GameObject _endGameWindow;
         private WaitForSeconds _regenerationInterval = new WaitForSeconds(5f);
         private float _regenerationValue = 1f;
+        private WaitForSeconds _interval = new WaitForSeconds(1f);
+        private GamePause _gamePause;
+        
+        [Inject]
+        private void Construct(GamePause gamePause)
+        {
+            _gamePause = gamePause;
+        }
         
         private void Start()
         {
@@ -22,7 +34,7 @@ namespace Player
             
             if (CurrentHealth <= 0)
             {
-                Debug.Log("Игрок умер");
+                StartCoroutine(PlayerDie());
             }
         }
 
@@ -46,6 +58,13 @@ namespace Player
                 OnHealthChanged?.Invoke();
             }
         }
-        
+
+        private IEnumerator PlayerDie()
+        {
+            _gamePause.SetPause(true);
+            _animator.SetTrigger("Die");
+            yield return _interval;
+            _endGameWindow.SetActive(true);
+        }
     }
 }

@@ -1,7 +1,9 @@
 using System.Collections;
 using System.Collections.Generic;
 using GameCore;
+using GameCore.Pause;
 using UnityEngine;
+using Zenject;
 
 namespace Player.Weapon
 {
@@ -28,6 +30,13 @@ namespace Player.Weapon
         private WaitForSeconds _interval, _duration, _timeBetweenAttack;
         private float _rotationSpeed, _range;
         private Coroutine _attackCoroutine;
+        private GamePause _gamePause;
+
+        [Inject]
+        private void Construct(GamePause gamePause)
+        {
+            _gamePause = gamePause;
+        }
         
         protected override void Start()
         {
@@ -120,6 +129,11 @@ namespace Player.Weapon
         {
             while (true)
             {
+                while (_gamePause.IsStopped)
+                {
+                    yield return null;
+                }
+                
                 if (CurrentLevel < 4)
                 {
                     _spriteRenderer1X.enabled = !_spriteRenderer1X.enabled;
