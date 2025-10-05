@@ -16,7 +16,6 @@ namespace GameCore.ExperienceSystem
         private PlayerHealth _playerHealth;
         private PlayerUpgrade _playerUpgrade;
         private float _distanceToPickUp;
-        private UpgradeLoader _upgradeLoader;
         
         public float ExpValue
         {
@@ -26,17 +25,11 @@ namespace GameCore.ExperienceSystem
 
         [Inject]
         private void Construct(ExperienceSystem experienceSystem, PlayerHealth playerHealth,
-            PlayerUpgrade playerUpgrade, UpgradeLoader upgradeLoader)
+            PlayerUpgrade playerUpgrade)
         {
             _experienceSystem = experienceSystem;
             _playerHealth = playerHealth;
             _playerUpgrade = playerUpgrade;
-            _upgradeLoader = upgradeLoader;
-        }
-        
-        private void Start()
-        {
-            _distanceToPickUp = _upgradeLoader.RangeCurrentLevel.Value;
         }
 
         private void OnEnable()
