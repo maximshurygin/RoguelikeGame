@@ -9,7 +9,6 @@ namespace Player
         public int SpeedUpgradeIndex { get; private set; }
         public int RegenerationUpgradeIndex { get; private set; }
         public int ExpRangeUpgradeIndex { get; private set; }
-        
         public int DropChanceUpgradeIndex { get; private set; }
 
         public void TrySpendCoins(int amount)
