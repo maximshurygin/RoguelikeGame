@@ -5,6 +5,7 @@ using GameCore.Health;
 using GameCore.Loot;
 using GameCore.ParticleSystem;
 using GameCore.UI;
+using Menu.Shop;
 using Player;
 using UnityEngine;
 using Zenject;
@@ -31,14 +32,23 @@ namespace Enemy
         private float _experienceToDrop = 3f;
         private float _chanceToDropBomb = 15f;
 
+        private float _dropChanceMultiplier = 1f;
+        private UpgradeLoader _upgradeLoader;
 
         [Inject]
-        private void Construct(ExperienceSpawner experienceSpawner, PlayerHealth playerHealth, DamageTextSpawner damageHealthSpawner, BombSpawner bombSpawner)
+        private void Construct(ExperienceSpawner experienceSpawner, PlayerHealth playerHealth, DamageTextSpawner damageHealthSpawner, BombSpawner bombSpawner, UpgradeLoader upgradeLoader)
         {
             _experienceSpawner = experienceSpawner;
             _playerHealth = playerHealth;
             _damageHealthSpawner = damageHealthSpawner;
             _bombSpawner = bombSpawner;
+            _upgradeLoader = upgradeLoader;
+        }
+
+        protected override void OnEnable()
+        {
+            base.OnEnable();
+            _dropChanceMultiplier = _upgradeLoader.DropCurrentLevel.Value;
         }
         
         public override void TakeDamage(float damage)
@@ -63,16 +73,16 @@ namespace Enemy
             switch (_enemyType)
             {
                 case EnemyType.Easy:
-                    _chanceToDropExp = 33f;
-                    _experienceToDrop = 3f;
+                    _chanceToDropExp = 33f * _dropChanceMultiplier;
+                    _experienceToDrop = 3f * _dropChanceMultiplier;
                     break;
                 case EnemyType.Medium:
-                    _chanceToDropExp = 50f;
-                    _experienceToDrop = 5f;
+                    _chanceToDropExp = 50f * _dropChanceMultiplier;
+                    _experienceToDrop = 5f * _dropChanceMultiplier;
                     break;
                 case EnemyType.Hard:
-                    _chanceToDropExp = 66f;
-                    _experienceToDrop = 7f;
+                    _chanceToDropExp = 66f * _dropChanceMultiplier;
+                    _experienceToDrop = 7f * _dropChanceMultiplier;
                     break;
                 case EnemyType.Boss:
                     _chanceToDropExp = 100f;

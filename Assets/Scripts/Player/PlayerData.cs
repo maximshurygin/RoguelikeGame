@@ -9,6 +9,8 @@ namespace Player
         public int SpeedUpgradeIndex { get; private set; }
         public int RegenerationUpgradeIndex { get; private set; }
         public int ExpRangeUpgradeIndex { get; private set; }
+        
+        public int DropChanceUpgradeIndex { get; private set; }
 
         public void TrySpendCoins(int amount)
         {
@@ -54,6 +56,9 @@ namespace Player
                 case 4:
                     ExpRangeUpgradeIndex = value;
                     break;
+                case 5:
+                    DropChanceUpgradeIndex = value;
+                    break;
             }
         }
 
@@ -64,6 +69,7 @@ namespace Player
             SpeedUpgradeIndex = 1;
             RegenerationUpgradeIndex = 1;
             ExpRangeUpgradeIndex = 1;
+            DropChanceUpgradeIndex = 1;
         }
     }
 }

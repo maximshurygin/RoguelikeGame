@@ -13,11 +13,13 @@ namespace Menu.Shop
         [SerializeField] private TMP_Text _speedCostText;
         [SerializeField] private TMP_Text _regenCostText;
         [SerializeField] private TMP_Text _rangeCostText;
+        [SerializeField] private TMP_Text _dropCostText;
 
         [SerializeField] private Button _healthButton;
         [SerializeField] private Button _speedButton;
         [SerializeField] private Button _regenButton;
         [SerializeField] private Button _rangeButton;
+        [SerializeField] private Button _dropButton;
         
         private UpgradeLoader _upgradeLoader;
         private PlayerData _playerData;
@@ -78,6 +80,16 @@ namespace Menu.Shop
                     CheckButtons();
                     ShowPrice();
                     break;
+                case 5:
+                    TrySpendCoins(_upgradeLoader.DropCurrentLevel);
+                    if (_playerData.DropChanceUpgradeIndex < 5)
+                    {
+                        _playerData.SetUpgradeIndex(_playerData.DropChanceUpgradeIndex + 1, 5);
+                    }
+                    _upgradeLoader.LoadCurrentLevels();
+                    CheckButtons();
+                    ShowPrice();
+                    break;
             }
         }
 
@@ -87,6 +99,7 @@ namespace Menu.Shop
             _speedCostText.text = "Cost: " + _upgradeLoader.SpeedCurrentLevel.Cost;
             _regenCostText.text = "Cost: " + _upgradeLoader.RegenCurrentLevel.Cost;
             _rangeCostText.text = "Cost: " + _upgradeLoader.RangeCurrentLevel.Cost;
+            _dropCostText.text = "Cost: " + _upgradeLoader.DropCurrentLevel.Cost;
         }
 
         public void CheckButtons()
@@ -95,6 +108,7 @@ namespace Menu.Shop
             _speedButton.interactable = _playerData.Coins >= _upgradeLoader.SpeedCurrentLevel.Cost && _playerData.SpeedUpgradeIndex < 5;
             _regenButton.interactable = _playerData.Coins >= _upgradeLoader.RegenCurrentLevel.Cost && _playerData.RegenerationUpgradeIndex < 5;
             _rangeButton.interactable = _playerData.Coins >= _upgradeLoader.RangeCurrentLevel.Cost && _playerData.ExpRangeUpgradeIndex < 5;
+            _dropButton.interactable = _playerData.Coins >= _upgradeLoader.DropCurrentLevel.Cost && _playerData.DropChanceUpgradeIndex < 5;
         }
 
         private void TrySpendCoins(ItemShop item)

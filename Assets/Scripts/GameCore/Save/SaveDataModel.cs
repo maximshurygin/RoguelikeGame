@@ -10,5 +10,6 @@ namespace GameCore.Save
         public int Speed;
         public int Regen;
         public int Range;
+        public int Drop;
     }
 }

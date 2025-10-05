@@ -26,7 +26,8 @@ namespace GameCore.Save
                 Health = _playerData.MaxHealthUpgradeIndex,
                 Speed = _playerData.SpeedUpgradeIndex,
                 Regen = _playerData.RegenerationUpgradeIndex,
-                Range = _playerData.ExpRangeUpgradeIndex
+                Range = _playerData.ExpRangeUpgradeIndex,
+                Drop = _playerData.DropChanceUpgradeIndex
             };
             
             string json = JsonUtility.ToJson(data, true);
@@ -49,6 +50,7 @@ namespace GameCore.Save
             SetOrDefault(data.Speed, 1, 2);
             SetOrDefault(data.Regen, 1, 3);
             SetOrDefault(data.Range, 1, 4);
+            SetOrDefault(data.Drop, 1, 5);
         }
 
         private void SetOrDefault(int value, int defaultValue, int index)
@@ -70,6 +72,7 @@ namespace GameCore.Save
             _playerData.SetUpgradeIndex(1, 2);
             _playerData.SetUpgradeIndex(1, 3);
             _playerData.SetUpgradeIndex(1, 4);
+            _playerData.SetUpgradeIndex(1, 5);
         }
     }
 }

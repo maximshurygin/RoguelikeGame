@@ -112,3 +112,9 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f82b34c631394cae9683972ebd25d05, type: 2}
   - {fileID: 11400000, guid: 2c26b908c31e047269bcaa3eedcde413, type: 2}
   - {fileID: 11400000, guid: 38fdc481d24634134afb48d37f7fab89, type: 2}
+  _dropLevels:
+  - {fileID: 11400000, guid: 57b38e4a167364df2afe9af5a345432e, type: 2}
+  - {fileID: 11400000, guid: 7ddb884aa52eb4f7bb703a24f333ef60, type: 2}
+  - {fileID: 11400000, guid: 8d222a5ad36824e1580532ee0060e410, type: 2}
+  - {fileID: 11400000, guid: 9eb82682dc1374f08a87a4692ada65c2, type: 2}
+  - {fileID: 11400000, guid: 8cdb8076967d646dc84f66bc6dca4951, type: 2}
