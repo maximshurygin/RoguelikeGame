@@ -46,9 +46,7 @@ namespace Menu.Shop
                     {
                         _playerData.SetUpgradeIndex(_playerData.MaxHealthUpgradeIndex + 1, 1);
                     }
-                    _upgradeLoader.LoadCurrentLevels();
-                    CheckButtons();
-                    ShowPrice();
+                    RefreshAndSave();
                     break;
                 case 2:
                     TrySpendCoins(_upgradeLoader.SpeedCurrentLevel);
@@ -56,9 +54,7 @@ namespace Menu.Shop
                     {
                         _playerData.SetUpgradeIndex(_playerData.SpeedUpgradeIndex + 1, 2);
                     }
-                    _upgradeLoader.LoadCurrentLevels();
-                    CheckButtons();
-                    ShowPrice();
+                    RefreshAndSave();
                     break;
                 case 3:
                     TrySpendCoins(_upgradeLoader.RegenCurrentLevel);
@@ -66,9 +62,7 @@ namespace Menu.Shop
                     {
                         _playerData.SetUpgradeIndex(_playerData.RegenerationUpgradeIndex + 1, 3);
                     }
-                    _upgradeLoader.LoadCurrentLevels();
-                    CheckButtons();
-                    ShowPrice();
+                    RefreshAndSave();
                     break;
                 case 4:
                     TrySpendCoins(_upgradeLoader.RangeCurrentLevel);
@@ -76,9 +70,7 @@ namespace Menu.Shop
                     {
                         _playerData.SetUpgradeIndex(_playerData.ExpRangeUpgradeIndex + 1, 4);
                     }
-                    _upgradeLoader.LoadCurrentLevels();
-                    CheckButtons();
-                    ShowPrice();
+                    RefreshAndSave();
                     break;
                 case 5:
                     TrySpendCoins(_upgradeLoader.DropCurrentLevel);
@@ -86,9 +78,7 @@ namespace Menu.Shop
                     {
                         _playerData.SetUpgradeIndex(_playerData.DropChanceUpgradeIndex + 1, 5);
                     }
-                    _upgradeLoader.LoadCurrentLevels();
-                    CheckButtons();
-                    ShowPrice();
+                    RefreshAndSave();
                     break;
             }
         }
@@ -114,8 +104,16 @@ namespace Menu.Shop
         private void TrySpendCoins(ItemShop item)
         {
             _playerData.TrySpendCoins(item.Cost);
-            _saveProgress.SaveData();
             _menuUIUpdater.UpdateUI();
         }
+        
+        private void RefreshAndSave()
+        {
+            _upgradeLoader.LoadCurrentLevels();
+            CheckButtons();
+            ShowPrice();
+            _saveProgress.SaveData();
+        }
+
     }
 }
