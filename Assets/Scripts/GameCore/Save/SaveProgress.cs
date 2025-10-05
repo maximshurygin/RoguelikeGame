@@ -1,3 +1,5 @@
+using System.IO;
+using System.Text;
 using Player;
 using UnityEngine;
 using Zenject;
@@ -7,6 +9,8 @@ namespace GameCore.Save
     public class SaveProgress
     {
         private PlayerData _playerData;
+        private readonly string _savePath = Path.Combine(Application.persistentDataPath, "save.json");
+
 
         [Inject]
         private void Construct(PlayerData playerData)
@@ -16,39 +20,56 @@ namespace GameCore.Save
 
         public void SaveData()
         {
-            PlayerPrefs.SetInt("Coins", _playerData.Coins);
-            PlayerPrefs.SetInt("Health", _playerData.MaxHealthUpgradeIndex);
-            PlayerPrefs.SetInt("Speed", _playerData.SpeedUpgradeIndex);
-            PlayerPrefs.SetInt("Regen", _playerData.RegenerationUpgradeIndex);
-            PlayerPrefs.SetInt("Range", _playerData.ExpRangeUpgradeIndex);
+            var data = new SaveDataModel
+            {
+                Coins = _playerData.Coins,
+                Health = _playerData.MaxHealthUpgradeIndex,
+                Speed = _playerData.SpeedUpgradeIndex,
+                Regen = _playerData.RegenerationUpgradeIndex,
+                Range = _playerData.ExpRangeUpgradeIndex
+            };
+            
+            string json = JsonUtility.ToJson(data, true);
+            File.WriteAllText(_savePath, json, Encoding.UTF8);
         }
 
         public void LoadData()
         {
-            _playerData.AddCoins(PlayerPrefs.GetInt("Coins", 0));
-            
-            _playerData.SetUpgradeIndex(PlayerPrefs.GetInt("Health"), 1);
-            if (PlayerPrefs.GetInt("Health") == 0)
+            if (!File.Exists(_savePath))
             {
-                _playerData.SetUpgradeIndex(1, 1);
-            }
-            _playerData.SetUpgradeIndex(PlayerPrefs.GetInt("Speed"), 2);
-            if (PlayerPrefs.GetInt("Speed") == 0)
-            {
-                _playerData.SetUpgradeIndex(1, 2);
+                ApplyDefaults();
+                return;
             }
             
-            _playerData.SetUpgradeIndex(PlayerPrefs.GetInt("Regen"), 3);
-            if (PlayerPrefs.GetInt("Regen") == 0)
-            {
-                _playerData.SetUpgradeIndex(1, 3);
-            }
+            string json = File.ReadAllText(_savePath, Encoding.UTF8);
+            var data = JsonUtility.FromJson<SaveDataModel>(json);
             
-            _playerData.SetUpgradeIndex(PlayerPrefs.GetInt("Range"), 4);
-            if (PlayerPrefs.GetInt("Range") == 0)
+            _playerData.AddCoins(data.Coins);
+            SetOrDefault(data.Health, 1, 1);
+            SetOrDefault(data.Speed, 1, 2);
+            SetOrDefault(data.Regen, 1, 3);
+            SetOrDefault(data.Range, 1, 4);
+        }
+
+        private void SetOrDefault(int value, int defaultValue, int index)
+        {
+            if (value <= 0)
             {
-                _playerData.SetUpgradeIndex(1, 4);
+                _playerData.SetUpgradeIndex(defaultValue, index);
             }
+            else
+            {
+                _playerData.SetUpgradeIndex(value, index);
+            }
+        }
+
+        private void ApplyDefaults()
+        {
+            _playerData.AddCoins(0);
+            _playerData.SetUpgradeIndex(1, 1);
+            _playerData.SetUpgradeIndex(1, 2);
+            _playerData.SetUpgradeIndex(1, 3);
+            _playerData.SetUpgradeIndex(1, 4);
         }
     }
 }

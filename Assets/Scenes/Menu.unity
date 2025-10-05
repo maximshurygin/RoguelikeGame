@@ -2866,7 +2866,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Upgrade Regen by 1
+  m_text: Upgrade Regen by 3 HP/Sec
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8df64b778fb274702a60e4fb52a3999d, type: 2}
   m_sharedMaterial: {fileID: 3233882770315499460, guid: 8df64b778fb274702a60e4fb52a3999d, type: 2}
