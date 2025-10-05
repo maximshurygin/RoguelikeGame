@@ -1,4 +1,5 @@
 using GameCore.Pause;
+using Menu.Shop;
 using UnityEngine;
 using Zenject;
 
@@ -22,11 +23,13 @@ namespace Player
         private Rigidbody2D _rigidbody;
         private GamePause _gamePause;
         private float _initialSpeed;
+        private UpgradeLoader _upgradeLoader;
 
         [Inject]
-        private void Construct(GamePause gamePause)
+        private void Construct(GamePause gamePause, UpgradeLoader upgradeLoader)
         {
             _gamePause = gamePause;
+            _upgradeLoader = upgradeLoader;
         }
         
         public Vector3 Movement => _movement;
@@ -34,6 +37,7 @@ namespace Player
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
+            moveSpeed = _upgradeLoader.SpeedCurrentLevel.Value;
             _initialSpeed = moveSpeed;
         }
         private void FixedUpdate()

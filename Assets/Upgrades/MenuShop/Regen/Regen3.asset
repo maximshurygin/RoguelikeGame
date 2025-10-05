@@ -9,10 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c416205381e34d17b0a77980d4ace772, type: 3}
-  m_Name: ExpRange
+  m_Script: {fileID: 11500000, guid: ffdcd3f047f74e66b63934b4e0994aef, type: 3}
+  m_Name: Regen3
   m_EditorClassIdentifier: 
-  _name: Exp Range
-  _description: + 0.5 pickup range
-  _icon: {fileID: 1304728556, guid: 8c76f63370c7249de82cf1229cf6e8ef, type: 3}
-  _id: 4
+  _value: 7
+  _cost: 500

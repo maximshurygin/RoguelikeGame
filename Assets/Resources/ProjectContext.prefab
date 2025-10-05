@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 2739369552258914961}
   - component: {fileID: 5718822309853373191}
   - component: {fileID: -2547577695531801385}
+  - component: {fileID: 2057487572294288229}
   m_Layer: 0
   m_Name: ProjectContext
   m_TagString: Untagged
@@ -74,3 +75,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ee80f1c386e42059ea428343e222475, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _upgradeLoader: {fileID: 2057487572294288229}
+--- !u!114 &2057487572294288229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4823461454948902318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a6fc58765864aa588575d8122a9379d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _maxHealthLevels:
+  - {fileID: 11400000, guid: 1e17c04c9a7004feca29acaa3468cf9f, type: 2}
+  - {fileID: 11400000, guid: 0ad91dcfe19df438481c95185ca7ec51, type: 2}
+  - {fileID: 11400000, guid: c2f311e97bfce47989ea6b8d0cdca6ac, type: 2}
+  - {fileID: 11400000, guid: 2b7cbcb0308de4554a032755056c60b4, type: 2}
+  - {fileID: 11400000, guid: 0b04ec8eaf87d4c8a811016644f3e965, type: 2}
+  _speedLevels:
+  - {fileID: 11400000, guid: 903794e59d9ed462b96cc7fa91082197, type: 2}
+  - {fileID: 11400000, guid: 350481a2244124dccb53a66ca48feb1f, type: 2}
+  - {fileID: 11400000, guid: a01082b31c4a741bbacdef08a81e82f5, type: 2}
+  - {fileID: 11400000, guid: 1089700503f2a45a99ce9e7959416775, type: 2}
+  - {fileID: 11400000, guid: cd8a792d03aa5450da91f210182e0efc, type: 2}
+  _regenLevels:
+  - {fileID: 11400000, guid: 1c54a03d6c4594298879384ce212e7a9, type: 2}
+  - {fileID: 11400000, guid: 910b0b6df5ebc4fb79919134d6d40867, type: 2}
+  - {fileID: 11400000, guid: 4dee4b5f527f341feac6817cdaf9f491, type: 2}
+  - {fileID: 11400000, guid: 51be1d923a1ab4a61a46ef2d2b7344a6, type: 2}
+  - {fileID: 11400000, guid: d29d9d34aab1b40ecb38185cbda10b43, type: 2}
+  _rangeLevels:
+  - {fileID: 11400000, guid: 9a9247b52bcbf47ce85110e87c4bb209, type: 2}
+  - {fileID: 11400000, guid: 187e6723b2cee49a19ece4b30d780964, type: 2}
+  - {fileID: 11400000, guid: 6f82b34c631394cae9683972ebd25d05, type: 2}
+  - {fileID: 11400000, guid: 2c26b908c31e047269bcaa3eedcde413, type: 2}
+  - {fileID: 11400000, guid: 38fdc481d24634134afb48d37f7fab89, type: 2}

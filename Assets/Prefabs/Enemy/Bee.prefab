@@ -294,7 +294,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3268c59ab25f4646a07aa27760502880, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 1
+  maxHealth: 10
   currentHealth: 0
   damageAnimator: {fileID: 995610444067161528}
   damageAudioSource: {fileID: 7296807398270347618}

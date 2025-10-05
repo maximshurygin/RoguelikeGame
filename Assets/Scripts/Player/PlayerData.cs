@@ -56,5 +56,14 @@ namespace Player
                     break;
             }
         }
+
+        public void ResetAllData()
+        {
+            Coins = 0;
+            MaxHealthUpgradeIndex = 1;
+            SpeedUpgradeIndex = 1;
+            RegenerationUpgradeIndex = 1;
+            ExpRangeUpgradeIndex = 1;
+        }
     }
 }

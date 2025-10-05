@@ -1,4 +1,5 @@
 using GameCore.ParticleSystem;
+using Menu.Shop;
 using Player;
 using Player.Weapon;
 using Player.Weapon.Bow;
@@ -18,6 +19,7 @@ namespace GameCore.UpgradeSystem
         
         private PlayerHealth _playerHealth;
         private PlayerMovement _playerMovement;
+        private UpgradeLoader _upgradeLoader;
 
         private FireBallWeapon _fireBallWeapon;
         private AuraWeapon _auraWeapon;
@@ -40,7 +42,7 @@ namespace GameCore.UpgradeSystem
         [Inject]
         private void Construct(PlayerHealth playerHealth, PlayerMovement playerMovement, FireBallWeapon fireBallWeapon,
             AuraWeapon auraWeapon, SurikenWeapon surikenWeapon, FrostBoltWeapon frostBoltWeapon, TrapWeapon trapWeapon,
-            BowWeapon bowWeapon, SwordWeapon swordWeapon)
+            BowWeapon bowWeapon, SwordWeapon swordWeapon, UpgradeLoader upgradeLoader)
         {
             _playerHealth = playerHealth;
             _playerMovement = playerMovement;
@@ -51,11 +53,12 @@ namespace GameCore.UpgradeSystem
             _trapWeapon = trapWeapon;
             _bowWeapon = bowWeapon;
             _swordWeapon = swordWeapon;
+            _upgradeLoader = upgradeLoader;
         }
 
         private void Start()
         {
-            RangeExp = 1.5f;
+            RangeExp = _upgradeLoader.RangeCurrentLevel.Value;
         }
 
         public void UpgradeHealth()
@@ -78,7 +81,7 @@ namespace GameCore.UpgradeSystem
 
         public void UpgradeRangeExp()
         {
-            RangeExp++;
+            RangeExp += 0.5f;
             SpawnPlayerUpgradeParticles();
         }
 

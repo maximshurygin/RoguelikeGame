@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using GameCore.Health;
 using GameCore.Pause;
+using Menu.Shop;
 using UnityEngine;
 using Zenject;
 
@@ -15,16 +16,22 @@ namespace Player
         private float _regenerationValue = 1f;
         private WaitForSeconds _interval = new WaitForSeconds(1f);
         private GamePause _gamePause;
+        private UpgradeLoader _upgradeLoader;
+
         
         [Inject]
-        private void Construct(GamePause gamePause)
+        private void Construct(GamePause gamePause,  UpgradeLoader upgradeLoader)
         {
             _gamePause = gamePause;
+            _upgradeLoader = upgradeLoader;
         }
         
         private void Start()
         {
             StartCoroutine(RegenerateHealth());
+            maxHealth = _upgradeLoader.HealthCurrentLevel.Value;
+            currentHealth = maxHealth;
+            _regenerationValue = _upgradeLoader.RegenCurrentLevel.Value;
         }
         
         public override void TakeDamage(float value)
