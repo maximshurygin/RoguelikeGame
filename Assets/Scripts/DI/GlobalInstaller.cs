@@ -1,5 +1,6 @@
 using GameCore.Save;
 using GameCore.ScenesLoader;
+using Menu;
 using Menu.Shop;
 using Player;
 using UnityEngine;
@@ -17,6 +18,7 @@ namespace DI
             Container.Bind<SaveProgress>().FromNew().AsSingle().NonLazy();
             Container.Bind<SceneLoader>().FromNew().AsSingle().NonLazy();
             Container.Bind<UpgradeLoader>().FromInstance(_upgradeLoader);
+            Container.Bind<GameDifficulty>().FromNew().AsSingle().NonLazy();
 
         }
     }

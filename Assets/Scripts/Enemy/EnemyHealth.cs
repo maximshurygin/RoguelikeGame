@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using GameCore;
 using GameCore.ExperienceSystem;
@@ -5,10 +6,12 @@ using GameCore.Health;
 using GameCore.Loot;
 using GameCore.ParticleSystem;
 using GameCore.UI;
+using Menu;
 using Menu.Shop;
 using Player;
 using UnityEngine;
 using Zenject;
+using Random = UnityEngine.Random;
 
 namespace Enemy
 {
@@ -34,15 +37,25 @@ namespace Enemy
 
         private float _dropChanceMultiplier = 1f;
         private UpgradeLoader _upgradeLoader;
+        private GameDifficulty _gameDifficulty;
+        private float _healthMultiplier = 1f;
 
         [Inject]
-        private void Construct(ExperienceSpawner experienceSpawner, PlayerHealth playerHealth, DamageTextSpawner damageHealthSpawner, BombSpawner bombSpawner, UpgradeLoader upgradeLoader)
+        private void Construct(ExperienceSpawner experienceSpawner, PlayerHealth playerHealth, DamageTextSpawner damageHealthSpawner, BombSpawner bombSpawner, UpgradeLoader upgradeLoader, GameDifficulty gameDifficulty)
         {
             _experienceSpawner = experienceSpawner;
             _playerHealth = playerHealth;
             _damageHealthSpawner = damageHealthSpawner;
             _bombSpawner = bombSpawner;
             _upgradeLoader = upgradeLoader;
+            _gameDifficulty = gameDifficulty;
+        }
+
+        private void Start()
+        {
+            _healthMultiplier = _gameDifficulty.Difficulty == DifficultyEnum.Normal ? 1f : 2f;
+            currentHealth *= _healthMultiplier;
+            maxHealth *= _healthMultiplier;
         }
 
         protected override void OnEnable()

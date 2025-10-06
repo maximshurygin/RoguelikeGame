@@ -65,13 +65,5 @@ namespace GameCore.LevelSystem
             string secondsString = _seconds < 10 ? $"0{_seconds}" : _seconds.ToString();
             _gameTimerText.text = $"{minutesString}:{secondsString}";
         }
-
-        // private void WinGame()
-        // {
-        //     if (_pastTime > 15)
-        //     {
-        //         _endGame.WinGame();
-        //     }
-        // }
     }
 }

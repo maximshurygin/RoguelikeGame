@@ -1634,7 +1634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da90d0f0e7144579aac9de57cb6ce9c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToSpawn: 100
+  timeToSpawn: 1000
   minPos: {fileID: 73150017}
   maxPos: {fileID: 84947096}
   enemyContainer: {fileID: 82087681}
@@ -2533,7 +2533,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: da90d0f0e7144579aac9de57cb6ce9c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeToSpawn: 100
+  timeToSpawn: 1000
   minPos: {fileID: 1588731792}
   maxPos: {fileID: 1934101403}
   enemyContainer: {fileID: 82087681}
@@ -9625,18 +9625,21 @@ MonoBehaviour:
     - {fileID: 1389739589}
     - {fileID: 77144451}
     - {fileID: 870308690}
-  - _enemySpawner:
-    - {fileID: 1389739589}
-    - {fileID: 1353342350}
-    - {fileID: 797577343}
-  - _enemySpawner:
-    - {fileID: 1353342350}
-    - {fileID: 77144451}
-    - {fileID: 1389739589}
-  - _enemySpawner:
     - {fileID: 232009299}
   - _enemySpawner:
     - {fileID: 1389739589}
+    - {fileID: 1353342350}
+    - {fileID: 797577343}
+  - _enemySpawner:
+    - {fileID: 1353342350}
+    - {fileID: 77144451}
+    - {fileID: 1389739589}
+  - _enemySpawner:
+    - {fileID: 1353342350}
+    - {fileID: 1389739589}
+    - {fileID: 870308690}
+  - _enemySpawner:
+    - {fileID: 1389739589}
     - {fileID: 797577343}
     - {fileID: 870308690}
   - _enemySpawner:
@@ -9653,27 +9656,11 @@ MonoBehaviour:
     - {fileID: 1353342350}
   - _enemySpawner:
     - {fileID: 1389739589}
-    - {fileID: 870308690}
     - {fileID: 1353342350}
-  - _enemySpawner:
-    - {fileID: 1389739589}
     - {fileID: 77144451}
-    - {fileID: 797577343}
-  - _enemySpawner:
-    - {fileID: 1389739589}
-    - {fileID: 77144451}
-    - {fileID: 870308690}
-  - _enemySpawner:
-    - {fileID: 1389739589}
-    - {fileID: 77144451}
-    - {fileID: 1353342350}
-  - _enemySpawner:
-    - {fileID: 1389739589}
-    - {fileID: 77144451}
-    - {fileID: 1353342350}
-    - {fileID: 870308690}
-  - _enemySpawner:
     - {fileID: 149681121}
+  - _enemySpawner:
+    - {fileID: 870308690}
 --- !u!114 &528895422
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -122566,6 +122553,7 @@ MonoBehaviour:
   _treasureWindow: {fileID: 1842094566}
   _rewardCoinsAnimation: {fileID: 1842094564}
   _bombSpawner: {fileID: 1875911752}
+  _endGame: {fileID: 1784981363}
 --- !u!1 &919598529
 GameObject:
   m_ObjectHideFlags: 0
@@ -130848,7 +130836,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1784981362
 RectTransform:
   m_ObjectHideFlags: 0

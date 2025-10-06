@@ -114,6 +114,12 @@ namespace Menu.Shop
             ShowPrice();
             _saveProgress.SaveData();
         }
-
+        
+        public void ResetAllData()
+        {
+            _playerData.ResetAllData();
+            _menuUIUpdater.UpdateUI();
+            RefreshAndSave();
+        }
     }
 }
