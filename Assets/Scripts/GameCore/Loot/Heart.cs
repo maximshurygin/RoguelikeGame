@@ -1,5 +1,4 @@
 using Player;
-using UnityEngine;
 using Zenject;
 
 namespace GameCore.Loot

@@ -31,9 +31,17 @@ namespace Enemy
         private WaitForSeconds _tick = new WaitForSeconds(1f);
         private ExperienceSpawner _experienceSpawner;
         private BombSpawner _bombSpawner;
+        private CoinSpawner _coinSpawner;
+        private TreasureSpawner _treasureSpawner;
+        private HeartSpawner _heartSpawner;
         private float _chanceToDropExp = 33f;
         private float _experienceToDrop = 3f;
         private float _chanceToDropBomb = 15f;
+        private float _chanceToDropCoin = 33f;
+        private float _chanceToDropHeart = 33f;
+        private float _chanceToDropTreasure = 10f;
+
+
 
         private float _dropChanceMultiplier = 1f;
         private UpgradeLoader _upgradeLoader;
@@ -41,7 +49,7 @@ namespace Enemy
         private float _healthMultiplier = 1f;
 
         [Inject]
-        private void Construct(ExperienceSpawner experienceSpawner, PlayerHealth playerHealth, DamageTextSpawner damageHealthSpawner, BombSpawner bombSpawner, UpgradeLoader upgradeLoader, GameDifficulty gameDifficulty)
+        private void Construct(ExperienceSpawner experienceSpawner, PlayerHealth playerHealth, DamageTextSpawner damageHealthSpawner, BombSpawner bombSpawner, UpgradeLoader upgradeLoader, GameDifficulty gameDifficulty, CoinSpawner coinSpawner, TreasureSpawner treasureSpawner, HeartSpawner heartSpawner)
         {
             _experienceSpawner = experienceSpawner;
             _playerHealth = playerHealth;
@@ -49,6 +57,9 @@ namespace Enemy
             _bombSpawner = bombSpawner;
             _upgradeLoader = upgradeLoader;
             _gameDifficulty = gameDifficulty;
+            _coinSpawner = coinSpawner;
+            _treasureSpawner = treasureSpawner;
+            _heartSpawner = heartSpawner;
         }
 
         private void Start()
@@ -86,21 +97,36 @@ namespace Enemy
             switch (_enemyType)
             {
                 case EnemyType.Easy:
-                    _chanceToDropExp = 33f * _dropChanceMultiplier;
-                    _experienceToDrop = 3f * _dropChanceMultiplier;
+                    _experienceToDrop = 3f;
+                    _chanceToDropExp = 15f * _dropChanceMultiplier;
+                    _chanceToDropCoin = 10f * _dropChanceMultiplier;
+                    _chanceToDropHeart = 10f * _dropChanceMultiplier;
+                    _chanceToDropTreasure = 3f * _dropChanceMultiplier;
                     break;
                 case EnemyType.Medium:
-                    _chanceToDropExp = 50f * _dropChanceMultiplier;
-                    _experienceToDrop = 5f * _dropChanceMultiplier;
+                    _experienceToDrop = 5f;
+                    _chanceToDropExp = 20f * _dropChanceMultiplier;
+                    _chanceToDropCoin = 15f * _dropChanceMultiplier;
+                    _chanceToDropHeart = 15f * _dropChanceMultiplier;
+                    _chanceToDropTreasure = 4f * _dropChanceMultiplier;
                     break;
                 case EnemyType.Hard:
-                    _chanceToDropExp = 66f * _dropChanceMultiplier;
-                    _experienceToDrop = 7f * _dropChanceMultiplier;
+                    _experienceToDrop = 7f;
+                    _chanceToDropExp = 25f * _dropChanceMultiplier;
+                    _chanceToDropCoin = 20f * _dropChanceMultiplier;
+                    _chanceToDropHeart = 20f * _dropChanceMultiplier;
+                    _chanceToDropTreasure = 5f * _dropChanceMultiplier;
                     break;
                 case EnemyType.Boss:
-                    _chanceToDropExp = 100f;
                     _experienceToDrop = 50f;
                     break;
+            }
+            
+            if (_enemyType == EnemyType.Boss)
+            {
+                _experienceSpawner.Spawn(GetRandomSpawnLocation(), _experienceToDrop);
+                _treasureSpawner.Spawn(GetRandomSpawnLocation());
+                return;
             }
             
             if (Random.Range(0f, 100f) <= _chanceToDropExp)
@@ -110,6 +136,18 @@ namespace Enemy
             else if (Random.Range(0f, 100f) <= _chanceToDropBomb)
             {
                 _bombSpawner.Spawn(GetRandomSpawnLocation());
+            }
+            else if (Random.Range(0f, 100f) <= _chanceToDropCoin)
+            {
+                _coinSpawner.Spawn(GetRandomSpawnLocation());
+            }
+            else if (Random.Range(0f, 100f) <= _chanceToDropTreasure)
+            {
+                _treasureSpawner.Spawn(GetRandomSpawnLocation());
+            }
+            else if (Random.Range(0f, 100f) <= _chanceToDropHeart)
+            {
+                _heartSpawner.Spawn(GetRandomSpawnLocation());
             }
         }
 

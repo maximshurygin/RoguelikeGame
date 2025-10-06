@@ -27,6 +27,9 @@ namespace DI
         [SerializeField] private RewardCoinsAnimation _rewardCoinsAnimation;
         [SerializeField] private BombSpawner _bombSpawner;
         [SerializeField] private EndGame _endGame;
+        [SerializeField] private CoinSpawner _coinSpawner;
+        [SerializeField] private TreasureSpawner _treasureSpawner;
+        [SerializeField] private HeartSpawner _heartSpawner;
 
         
 
@@ -49,6 +52,9 @@ namespace DI
             Container.Bind<RewardCoinsAnimation>().FromInstance(_rewardCoinsAnimation).AsSingle().NonLazy();
             Container.Bind<BombSpawner>().FromInstance(_bombSpawner).AsSingle().NonLazy();
             Container.Bind<EndGame>().FromInstance(_endGame).AsSingle().NonLazy();
+            Container.Bind<CoinSpawner>().FromInstance(_coinSpawner).AsSingle().NonLazy();
+            Container.Bind<TreasureSpawner>().FromInstance(_treasureSpawner).AsSingle().NonLazy();
+            Container.Bind<HeartSpawner>().FromInstance(_heartSpawner).AsSingle().NonLazy();
 
         }
     }
