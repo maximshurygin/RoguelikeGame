@@ -1,4 +1,5 @@
 using GameCore;
+using GameCore.EndGame;
 using GameCore.ExperienceSystem;
 using GameCore.LevelSystem;
 using GameCore.Loot;
@@ -25,6 +26,7 @@ namespace DI
         [SerializeField] private TreasureWindow _treasureWindow;
         [SerializeField] private RewardCoinsAnimation _rewardCoinsAnimation;
         [SerializeField] private BombSpawner _bombSpawner;
+        [SerializeField] private EndGame _endGame;
 
         
 
@@ -46,6 +48,7 @@ namespace DI
             Container.Bind<TreasureWindow>().FromInstance(_treasureWindow).AsSingle().NonLazy();
             Container.Bind<RewardCoinsAnimation>().FromInstance(_rewardCoinsAnimation).AsSingle().NonLazy();
             Container.Bind<BombSpawner>().FromInstance(_bombSpawner).AsSingle().NonLazy();
+            Container.Bind<EndGame>().FromInstance(_endGame).AsSingle().NonLazy();
 
         }
     }

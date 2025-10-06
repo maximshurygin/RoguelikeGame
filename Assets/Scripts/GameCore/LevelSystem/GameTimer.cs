@@ -12,19 +12,22 @@ namespace GameCore.LevelSystem
         private WaitForSeconds _tick = new WaitForSeconds(1f);
         private Coroutine _timerCoroutine;
         private int _seconds, _minutes;
+        private EndGame.EndGame _endGame;
 
         public int Minutes => _minutes;
 
         [Inject]
-        private void Construct(LevelSystem levelSystem)
+        private void Construct(LevelSystem levelSystem, EndGame.EndGame endGame)
         {
             _levelSystem = levelSystem;
+            _endGame = endGame;
         }
 
         private void Start()
         {
             Activate();
         }
+        
 
         public void Activate()
         {
@@ -41,7 +44,7 @@ namespace GameCore.LevelSystem
 
         private IEnumerator Timer()
         {
-            while (true)
+            while (_minutes < 15)
             {
                 _seconds++;
                 if (_seconds >= 60)
@@ -53,6 +56,7 @@ namespace GameCore.LevelSystem
                 TimeTextFormat();
                 yield return _tick;
             }
+            _endGame.WinGame();
         }
 
         private void TimeTextFormat()
@@ -61,5 +65,13 @@ namespace GameCore.LevelSystem
             string secondsString = _seconds < 10 ? $"0{_seconds}" : _seconds.ToString();
             _gameTimerText.text = $"{minutesString}:{secondsString}";
         }
+
+        // private void WinGame()
+        // {
+        //     if (_pastTime > 15)
+        //     {
+        //         _endGame.WinGame();
+        //     }
+        // }
     }
 }

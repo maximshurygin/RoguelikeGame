@@ -16,6 +16,8 @@ namespace GameCore.EndGame
     {
         [SerializeField] private Button _endButton;
         [SerializeField] private TMP_Text _coinsText;
+        [SerializeField] private TMP_Text _gameOverText;
+        [SerializeField] private TMP_Text _winText;
         private WaitForSeconds _interval;
         private int _coins;
         
@@ -25,6 +27,7 @@ namespace GameCore.EndGame
         private SaveProgress _saveProgress;
         private GamePause _gamePause;
         private SceneLoader _sceneLoader;
+        private bool _isWinner = false;
         
         [Inject]
         private void Construct(RewardCoinsAnimation rewardCoinsAnimation, CoinKeeper coinKeeper,
@@ -40,6 +43,14 @@ namespace GameCore.EndGame
 
         private void OnEnable()
         {
+            if (_isWinner)
+            {
+                _winText.gameObject.SetActive(true);
+            }
+            else
+            {
+                _gameOverText.gameObject.SetActive(true);
+            }
             _gamePause.SetPause(true);
             _endButton.gameObject.SetActive(false);
             _coins = _coinKeeper.Coins;
@@ -67,6 +78,12 @@ namespace GameCore.EndGame
                 _coinsText.text = _coins.ToString();
             }
             _endButton.gameObject.SetActive(true);
+        }
+
+        public void WinGame()
+        {
+            _isWinner = true;
+            gameObject.SetActive(true);
         }
     }
 }
