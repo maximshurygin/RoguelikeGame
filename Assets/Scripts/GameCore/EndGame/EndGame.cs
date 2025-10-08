@@ -1,89 +1,37 @@
-using System.Collections;
-using GameCore.Loot;
-using GameCore.Pause;
-using GameCore.Save;
-using GameCore.UI;
-using GameCore.ScenesLoader;
-using Player;
-using TMPro;
+using GameCore.LevelSystem;
 using UnityEngine;
-using UnityEngine.UI;
 using Zenject;
 
 namespace GameCore.EndGame
 {
     public class EndGame : MonoBehaviour
     {
-        [SerializeField] private Button _endButton;
-        [SerializeField] private TMP_Text _coinsText;
-        [SerializeField] private TMP_Text _gameOverText;
-        [SerializeField] private TMP_Text _winText;
-        private WaitForSeconds _interval;
-        private int _coins;
-        
-        private CoinKeeper _coinKeeper;
-        private RewardCoinsAnimation _rewardCoinsAnimation;
-        private PlayerData _playerData;
-        private SaveProgress _saveProgress;
-        private GamePause _gamePause;
-        private SceneLoader _sceneLoader;
+        [SerializeField] private GameObject _endGameWindow;
+        private GameTimer _gameTimer;
         private bool _isWinner = false;
-        
+
+        public bool IsWinner => _isWinner;
+
         [Inject]
-        private void Construct(RewardCoinsAnimation rewardCoinsAnimation, CoinKeeper coinKeeper,
-            PlayerData playerData, SaveProgress saveProgress, GamePause gamePause, SceneLoader sceneLoader)
+        private void Construct(GameTimer gameTimer)
         {
-            _rewardCoinsAnimation = rewardCoinsAnimation;
-            _coinKeeper = coinKeeper;
-            _playerData = playerData;
-            _saveProgress = saveProgress;
-            _gamePause = gamePause;
-            _sceneLoader = sceneLoader;
+            _gameTimer = gameTimer;
         }
 
         private void OnEnable()
         {
-            if (_isWinner)
-            {
-                _winText.gameObject.SetActive(true);
-            }
-            else
-            {
-                _gameOverText.gameObject.SetActive(true);
-            }
-            _gamePause.SetPause(true);
-            _endButton.gameObject.SetActive(false);
-            _coins = _coinKeeper.Coins;
-            _coinsText.text = "0";
-            _interval = new WaitForSeconds(2.5f);
-            StartCoroutine(CalculateCoins());
+            _gameTimer.OnTimerFinished += WinGame;
         }
 
-        public void ExitGame()
+        private void OnDisable()
         {
-            _playerData.AddCoins(_coins);
-            _saveProgress.SaveData();
-            _sceneLoader.MainMenu();
+            _gameTimer.OnTimerFinished -= WinGame;
         }
 
-        private IEnumerator CalculateCoins()
-        {
-            if (_coins > 10)
-            {
-                _rewardCoinsAnimation.ActivateAnimation(_coins, 0, _coinsText);
-                yield return _interval;
-            }
-            else
-            {
-                _coinsText.text = _coins.ToString();
-            }
-            _endButton.gameObject.SetActive(true);
-        }
-
-        public void WinGame()
+        private void WinGame()
         {
             _isWinner = true;
-            gameObject.SetActive(true);
+            _endGameWindow.SetActive(true);
         }
     }
 }

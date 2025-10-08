@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using TMPro;
 using UnityEngine;
@@ -7,20 +8,20 @@ namespace GameCore.LevelSystem
 {
     public class GameTimer : MonoBehaviour, IActivate
     {
-        [SerializeField] private TMP_Text _gameTimerText;
         private LevelSystem _levelSystem;
         private WaitForSeconds _tick = new WaitForSeconds(1f);
         private Coroutine _timerCoroutine;
         private int _seconds, _minutes;
-        private EndGame.EndGame _endGame;
+        
+        public event Action OnTimerFinished;
+        public event Action<int, int> OnTimeChanged;
 
         public int Minutes => _minutes;
 
         [Inject]
-        private void Construct(LevelSystem levelSystem, EndGame.EndGame endGame)
+        private void Construct(LevelSystem levelSystem)
         {
             _levelSystem = levelSystem;
-            _endGame = endGame;
         }
 
         private void Start()
@@ -53,17 +54,11 @@ namespace GameCore.LevelSystem
                     _seconds = 0;
                     _levelSystem.OnLevelChanged?.Invoke();
                 }
-                TimeTextFormat();
+                OnTimeChanged?.Invoke(_minutes, _seconds);
                 yield return _tick;
             }
-            _endGame.WinGame();
+            OnTimerFinished?.Invoke();
         }
-
-        private void TimeTextFormat()
-        {
-            string minutesString = _minutes < 10 ? $"0{_minutes}" : _minutes.ToString();
-            string secondsString = _seconds < 10 ? $"0{_seconds}" : _seconds.ToString();
-            _gameTimerText.text = $"{minutesString}:{secondsString}";
-        }
+        
     }
 }
