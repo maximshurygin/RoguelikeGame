@@ -31,8 +31,6 @@ namespace Player
             _upgradeLoader = upgradeLoader;
         }
         
-        // public Vector3 Movement => _movement;
-
         private void Start()
         {
             _rigidbody = GetComponent<Rigidbody2D>();
