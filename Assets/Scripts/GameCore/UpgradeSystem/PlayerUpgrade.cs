@@ -27,7 +27,6 @@ namespace GameCore.UpgradeSystem
         private FrostBoltWeapon _frostBoltWeapon;
         private TrapWeapon _trapWeapon;
         private BowWeapon _bowWeapon;
-        private SwordWeapon _swordWeapon;
 
         public FireBallWeapon FireBallWeapon => _fireBallWeapon;
         public AuraWeapon AuraWeapon => _auraWeapon;
@@ -35,14 +34,13 @@ namespace GameCore.UpgradeSystem
         public FrostBoltWeapon FrostBoltWeapon => _frostBoltWeapon;
         public TrapWeapon TrapWeapon => _trapWeapon;
         public BowWeapon BowWeapon => _bowWeapon;
-        public SwordWeapon SwordWeapon => _swordWeapon;
         
         public float RangeExp { get; private set; }
         
         [Inject]
         private void Construct(PlayerHealth playerHealth, PlayerMovement playerMovement, FireBallWeapon fireBallWeapon,
             AuraWeapon auraWeapon, SurikenWeapon surikenWeapon, FrostBoltWeapon frostBoltWeapon, TrapWeapon trapWeapon,
-            BowWeapon bowWeapon, SwordWeapon swordWeapon, UpgradeLoader upgradeLoader)
+            BowWeapon bowWeapon, UpgradeLoader upgradeLoader)
         {
             _playerHealth = playerHealth;
             _playerMovement = playerMovement;
@@ -52,7 +50,6 @@ namespace GameCore.UpgradeSystem
             _frostBoltWeapon = frostBoltWeapon;
             _trapWeapon = trapWeapon;
             _bowWeapon = bowWeapon;
-            _swordWeapon = swordWeapon;
             _upgradeLoader = upgradeLoader;
         }
 

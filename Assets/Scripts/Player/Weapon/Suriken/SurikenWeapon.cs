@@ -49,6 +49,7 @@ namespace Player.Weapon.Suriken
             _speed = WeaponStats[CurrentLevel - 1].Speed;
             _range = WeaponStats[CurrentLevel - 1].Range;
             _duration = WeaponStats[CurrentLevel - 1].Duration;
+            _lvlText.text = CurrentLevel.ToString();
         }
 
         private IEnumerator SpawnSuriken()

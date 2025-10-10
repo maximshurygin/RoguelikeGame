@@ -58,6 +58,7 @@ namespace Player.Weapon.FrostBoltWeapon
             _duration = WeaponStats[CurrentLevel - 1].Duration;
             _slowdownDuration = new WaitForSeconds(WeaponStats[CurrentLevel - 1].SlowdownDuration);
             _slowdownRate = WeaponStats[CurrentLevel - 1].SlowdownRate;
+            _lvlText.text = CurrentLevel.ToString();
         }
         
         private IEnumerator ThrowFrostBolt()

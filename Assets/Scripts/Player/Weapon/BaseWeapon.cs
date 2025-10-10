@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using Enemy;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace Player.Weapon
@@ -9,6 +11,8 @@ namespace Player.Weapon
     {
         [SerializeField] private List<WeaponStats> _weaponStats = new();
         [SerializeField] private string _weaponName;
+        [SerializeField] private Image _icon;
+        [SerializeField] protected TMP_Text _lvlText;
         
         private float _damage;
         private DiContainer _diContainer;
@@ -18,7 +22,6 @@ namespace Player.Weapon
         public float Damage => _damage;
         public List<WeaponStats> WeaponStats => _weaponStats;
         public int CurrentLevel => _currentLevel;
-        public int MaxLevel => _maxLevel;
         public string WeaponName => _weaponName;
 
         
@@ -49,6 +52,7 @@ namespace Player.Weapon
 
         protected virtual void SetStats(int value)
         {
+            _icon.gameObject.SetActive(true);
             _damage = _weaponStats[value].Damage;
         }
 

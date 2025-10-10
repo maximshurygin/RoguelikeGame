@@ -18,7 +18,6 @@ namespace Player
         [SerializeField] private Animator animator;
         [SerializeField] private Joystick joystick;
         private Device _device;
-        // private bool _isInteracting;
         private Vector3 _movement;
         private Rigidbody2D _rigidbody;
         private GamePause _gamePause;
@@ -50,7 +49,6 @@ namespace Player
                 _device = Device.Keyboard;
             
             Move();
-            // Interact();
         }
 
         public void UpgradeSpeed()
@@ -70,20 +68,6 @@ namespace Player
             animator.SetFloat("Horizontal", _movement.x);
             animator.SetFloat("Vertical", _movement.y);
             animator.SetFloat("Speed", _movement.sqrMagnitude);
-            // animator.SetBool("IsInteracting", _isInteracting);
         }
-
-        // private void Interact()
-        // {
-        //     if (Input.GetKeyDown(KeyCode.E))
-        //     {
-        //         _isInteracting = true;
-        //     }
-        //
-        //     if (Input.GetKeyUp(KeyCode.E))
-        //     {
-        //         _isInteracting = false;
-        //     }
-        // }
     }
 }

@@ -71,6 +71,7 @@ namespace Player.Weapon
             _slowdownRate = WeaponStats[CurrentLevel - 1].SlowdownRate;
             _targetContainer.transform.localScale = Vector3.one * _range;
             _collider.radius = _range / 3f;
+            _lvlText.text = CurrentLevel.ToString();
         }
 
         private IEnumerator CheckZone()

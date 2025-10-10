@@ -75,6 +75,8 @@ namespace Player.Weapon
             _range = WeaponStats[CurrentLevel - 1].Range;
             _duration = new WaitForSeconds(WeaponStats[CurrentLevel - 1].Duration);
             _timeBetweenAttack = new WaitForSeconds(WeaponStats[CurrentLevel - 1].TimeBetweenAttack);
+            _lvlText.text = CurrentLevel.ToString();
+
         }
 
         private void SetupWeapon()

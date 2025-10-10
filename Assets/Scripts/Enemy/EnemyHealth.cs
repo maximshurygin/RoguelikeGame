@@ -42,7 +42,7 @@ namespace Enemy
         private float _chanceToDropTreasure = 10f;
 
 
-
+        private float _experienceMultiplier = 1f;
         private float _dropChanceMultiplier = 1f;
         private UpgradeLoader _upgradeLoader;
         private GameDifficulty _gameDifficulty;
@@ -65,6 +65,7 @@ namespace Enemy
         private void Start()
         {
             _healthMultiplier = _gameDifficulty.Difficulty == DifficultyEnum.Normal ? 1f : 2f;
+            _experienceMultiplier = _gameDifficulty.Difficulty == DifficultyEnum.Normal ? 1f : 2f;
             currentHealth *= _healthMultiplier;
             maxHealth *= _healthMultiplier;
         }
@@ -97,28 +98,28 @@ namespace Enemy
             switch (_enemyType)
             {
                 case EnemyType.Easy:
-                    _experienceToDrop = 3f;
-                    _chanceToDropExp = 15f * _dropChanceMultiplier;
-                    _chanceToDropCoin = 10f * _dropChanceMultiplier;
+                    _experienceToDrop = 4f * _experienceMultiplier;
+                    _chanceToDropExp = 20f * _dropChanceMultiplier;
+                    _chanceToDropCoin = 20f * _dropChanceMultiplier;
                     _chanceToDropHeart = 10f * _dropChanceMultiplier;
                     _chanceToDropTreasure = 3f * _dropChanceMultiplier;
                     break;
                 case EnemyType.Medium:
-                    _experienceToDrop = 5f;
-                    _chanceToDropExp = 20f * _dropChanceMultiplier;
-                    _chanceToDropCoin = 15f * _dropChanceMultiplier;
+                    _experienceToDrop = 6f * _experienceMultiplier;
+                    _chanceToDropExp = 25f * _dropChanceMultiplier;
+                    _chanceToDropCoin = 25f * _dropChanceMultiplier;
                     _chanceToDropHeart = 15f * _dropChanceMultiplier;
                     _chanceToDropTreasure = 4f * _dropChanceMultiplier;
                     break;
                 case EnemyType.Hard:
-                    _experienceToDrop = 7f;
-                    _chanceToDropExp = 25f * _dropChanceMultiplier;
-                    _chanceToDropCoin = 20f * _dropChanceMultiplier;
+                    _experienceToDrop = 8f * _experienceMultiplier;
+                    _chanceToDropExp = 30f * _dropChanceMultiplier;
+                    _chanceToDropCoin = 30f * _dropChanceMultiplier;
                     _chanceToDropHeart = 20f * _dropChanceMultiplier;
                     _chanceToDropTreasure = 5f * _dropChanceMultiplier;
                     break;
                 case EnemyType.Boss:
-                    _experienceToDrop = 50f;
+                    _experienceToDrop = 50f * _experienceMultiplier;
                     break;
             }
             

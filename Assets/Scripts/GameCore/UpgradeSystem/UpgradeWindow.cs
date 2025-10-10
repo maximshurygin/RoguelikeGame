@@ -16,7 +16,6 @@ namespace GameCore.UpgradeSystem
         [SerializeField] private CardHolder _frostBolt;
         [SerializeField] private CardHolder _trap;
         [SerializeField] private CardHolder _bow;
-        [SerializeField] private CardHolder _sword;
         
         private List<CardHolder> _cardsInPool = new List<CardHolder>();
         private PlayerUpgrade _playerUpgrade;
@@ -38,7 +37,6 @@ namespace GameCore.UpgradeSystem
             _allCards.Add(_frostBolt);
             _allCards.Add(_trap);
             _allCards.Add(_bow);
-            _allCards.Add(_sword);
         }
 
         private void OnEnable()
@@ -88,9 +86,6 @@ namespace GameCore.UpgradeSystem
                     break;
                 case 10:
                     _playerUpgrade.UpgradeWeapon(_playerUpgrade.BowWeapon);
-                    break;
-                case 11:
-                    _playerUpgrade.UpgradeWeapon(_playerUpgrade.SwordWeapon);
                     break;
             }
         }
@@ -146,11 +141,6 @@ namespace GameCore.UpgradeSystem
             {
                 _allCards.Remove(_bow);
             }
-            if (_playerUpgrade.SwordWeapon.CurrentLevel >= 8)
-            {
-                _allCards.Remove(_sword);
-            }
         }
-        
     }
 }

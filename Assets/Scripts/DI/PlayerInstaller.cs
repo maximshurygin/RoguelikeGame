@@ -19,10 +19,6 @@ namespace DI
         [SerializeField] private BowWeapon bowWeapon;
         [SerializeField] private FireBallWeapon _fireBallWeapon;
         [SerializeField] private AuraWeapon _auraWeapon;
-        [SerializeField] private SwordWeapon _swordWeapon;
-
-
-
 
 
         public override void InstallBindings()
@@ -35,7 +31,6 @@ namespace DI
             Container.Bind<BowWeapon>().FromInstance(bowWeapon).AsSingle().NonLazy();
             Container.Bind<FireBallWeapon>().FromInstance(_fireBallWeapon).AsSingle().NonLazy();
             Container.Bind<AuraWeapon>().FromInstance(_auraWeapon).AsSingle().NonLazy();
-            Container.Bind<SwordWeapon>().FromInstance(_swordWeapon).AsSingle().NonLazy();
         }
     }
 }

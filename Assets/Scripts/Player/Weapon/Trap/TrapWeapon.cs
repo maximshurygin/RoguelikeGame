@@ -51,6 +51,7 @@ namespace Player.Weapon.Trap
             _timeBetweenAttack = new WaitForSeconds(WeaponStats[CurrentLevel - 1].TimeBetweenAttack);
             _slowdownDuration = new WaitForSeconds(WeaponStats[CurrentLevel - 1].SlowdownDuration);
             _slowdownRate = WeaponStats[CurrentLevel - 1].SlowdownRate;
+            _lvlText.text = CurrentLevel.ToString();
         }
 
         private IEnumerator SpawnTrap()
